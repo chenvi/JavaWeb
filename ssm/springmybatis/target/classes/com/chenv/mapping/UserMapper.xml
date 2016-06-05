@@ -79,4 +79,9 @@
       age = #{age,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- ==============以下内容是根据自身业务扩展的内容======================= -->
+      <!-- select标签的id属性与UserMapper接口中定义的getAllUser方法要一模一样 -->
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select user_id, user_name, user_birthday, user_salary from t_user
+    </select>
 </mapper>

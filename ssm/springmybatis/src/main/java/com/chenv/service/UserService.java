@@ -1,5 +1,7 @@
 package com.chenv.service;
 
+import java.util.List;
+
 import com.chenv.domain.User;
 
 
@@ -18,4 +20,9 @@ public interface UserService {
      * @return
      */
     User getUserById(Integer userId);
+    
+    /**获取所有用户信息
+     * @return List<User>
+     */
+    List<User> getAllUser();
 }

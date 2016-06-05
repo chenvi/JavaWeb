@@ -1,5 +1,7 @@
 package com.chenv.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,9 @@ public class UserServiceImpl implements UserService {
     
     public User getUserById(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
+    }
+    
+    public List<User> getAllUser() {
+        return userMapper.getAllUser();
     }
 }
