@@ -81,7 +81,12 @@
   </update>
   <!-- ==============以下内容是根据自身业务扩展的内容======================= -->
       <!-- select标签的id属性与UserMapper接口中定义的getAllUser方法要一模一样 -->
-    <select id="getAllUser" resultMap="BaseResultMap">
-        select user_id, user_name, user_birthday, user_salary from t_user
-    </select>
+  <select id="getAllUser" resultMap="BaseResultMap">
+        select id, user_name, password, age from user_t
+  </select>
+  
+  <delete id="deleteAllUser" parameterType="com.chenv.domain.User">
+  		<!--  truncate table user_t -->
+  		delete form user_t
+  </delete>
 </mapper>

@@ -25,4 +25,9 @@ public interface UserService {
      * @return List<User>
      */
     List<User> getAllUser();
+    
+   /**删除所有用户
+    * 
+    */
+    public void deleteAllUser();
 }

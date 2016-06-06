@@ -36,8 +36,8 @@ public class MybatisTest {
         //UserServiceI userService = (UserServiceI) ac.getBean("userService");
         User user = new User();
         //user.setId(1);
-        user.setUserName("白虎神皇xdp");
-        user.setPassword("aa");
+        user.setUserName("chenv");
+        user.setPassword("cc");
         user.setAge(23);
         userService.addUser(user);
     }

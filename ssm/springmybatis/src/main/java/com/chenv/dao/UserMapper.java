@@ -21,4 +21,6 @@ public interface UserMapper {
      * @return List<User>
      */
     List<User> getAllUser();
+    
+    void deleteAllUser();
 }

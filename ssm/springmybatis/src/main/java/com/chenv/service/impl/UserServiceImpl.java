@@ -19,7 +19,7 @@ import com.chenv.service.UserService;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
+	
     /**
      * 使用@Autowired注解标注userMapper变量，
      * 当需要使用UserMapper时，Spring就会自动注入UserMapper
@@ -36,8 +36,13 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
     }
-    
-    public List<User> getAllUser() {
-        return userMapper.getAllUser();
-    }
+
+	public void deleteAllUser() {
+		userMapper.deleteAllUser();
+	}
+	
+	 public List<User> getAllUser() {
+	        return userMapper.getAllUser();
+	 }
+
 }
