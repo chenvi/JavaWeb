@@ -1,6 +1,6 @@
 package dao;
 
-import domain.User;
+import pojo.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);

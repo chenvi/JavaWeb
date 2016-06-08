@@ -18,7 +18,7 @@
             <property name="forceBigDecimals" value="false"/>    
         </javaTypeResolver>    
         <!-- 生成模型的包名和位置-->    
-        <javaModelGenerator targetPackage="domain" targetProject="src">    
+        <javaModelGenerator targetPackage="pojo" targetProject="src">    
             <property name="enableSubPackages" value="true"/>    
             <property name="trimStrings" value="true"/>    
         </javaModelGenerator>    
