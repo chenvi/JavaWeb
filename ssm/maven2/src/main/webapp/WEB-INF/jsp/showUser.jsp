@@ -7,5 +7,9 @@
   
   <body>
     ${user.userName}
+    <br>
+    ${user.password}
+    <br>
+    ${user.age}
   </body>
 </html>

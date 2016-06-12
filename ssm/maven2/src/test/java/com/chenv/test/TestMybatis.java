@@ -1,4 +1,7 @@
 package com.chenv.test;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -37,5 +40,19 @@ public class TestMybatis {
 		// System.out.println(user.getUserName());
 		// logger.info("值："+user.getUserName());
 		logger.info(JSON.toJSONString(user));
+	}
+	
+	@Test
+	public void testTransaction(){
+		List<User> users = new ArrayList<User>();
+		for(int i = 0; i < 5; i++){
+			User user = new User();
+			user.setId(i);
+			user.setUserName(i+"chenv");
+			user.setAge(i+20);
+			user.setPassword("100"+i);
+			users.add(user);
+		}
+		this.userService.insertUser(users);
 	}
 }
