@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.chenv.ssm</groupId>
-  <artifactId>maven2</artifactId>
+  <artifactId>maven4</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>maven2</name>
@@ -163,20 +163,20 @@
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
     </dependency>
-    
-    
+      
   </dependencies>
+  
+
   <build>
-    <finalName>maven2</finalName>
-    
-     <plugins>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.8</source>
-                <target>1.8</target>
-            </configuration>
-        </plugin>
+    <finalName>maven4</finalName>
+   <plugins> 
+	<plugin>
+	     <artifactId>maven-compiler-plugin</artifactId>
+	     <configuration>
+	         <source>1.7</source>
+	         <target>1.7</target>
+	     </configuration>
+	</plugin>
     </plugins>
   </build>
 </project>

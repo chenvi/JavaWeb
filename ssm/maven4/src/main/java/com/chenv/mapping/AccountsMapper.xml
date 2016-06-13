@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenv.dao.AccountsMapper" >
+  <resultMap id="BaseResultMap" type="com.chenv.pojo.Accounts" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cardnum" property="cardnum" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="account" property="account" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cardnum, password, account
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from accounts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAccounts" resultMap="BaseResultMap" parameterType="com.chenv.pojo.Accounts" >
+    select 
+    <include refid="Base_Column_List" />
+    from accounts
+    where cardnum = #{cardnum,jdbcType=CHAR} and password = #{password,jdbcType=CHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from accounts
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chenv.pojo.Accounts" >
+    insert into accounts (id, cardnum, password, 
+      account)
+    values (#{id,jdbcType=INTEGER}, #{cardnum,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{account,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenv.pojo.Accounts" >
+    insert into accounts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cardnum != null" >
+        cardnum,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cardnum != null" >
+        #{cardnum,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenv.pojo.Accounts" >
+    update accounts
+    <set >
+      <if test="cardnum != null" >
+        cardnum = #{cardnum,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenv.pojo.Accounts" >
+    update accounts
+    set cardnum = #{cardnum,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      account = #{account,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
