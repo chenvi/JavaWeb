@@ -1,5 +1,7 @@
 package com.chenv.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.chenv.pojo.User;
 
 public interface UserMapper {
@@ -14,4 +16,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    User login(@Param(value = "name") String name,
+    		@Param(value = "password") String password);
 }

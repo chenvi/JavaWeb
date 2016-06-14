@@ -3,10 +3,11 @@
 <html>
   <head>
     <title>主页</title>
+    <jsp:forward page="/WEB-INF/jsp/login.jsp"></jsp:forward>
 <body>
-  <form action="./student/showStudent" method="post">
+  <form action="./user/showUser" method="post">
 	姓名：<input name="name" type="text" /><br/>
-	<!--  密码：<input name="name" type="text" /><br/> -->
+	密码：<input name="password" type="password" /><br/> 
 	<input type="submit" value="提交"><br/>
   </form>
 </body>

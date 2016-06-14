@@ -8,12 +8,14 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
+import com.chenv.dao.UserMapper;
 import com.chenv.pojo.Student;
 import com.chenv.pojo.User;
 import com.chenv.service.StudentService;
@@ -27,6 +29,9 @@ public class TestMybatis {
 
 	private static Logger logger = Logger.getLogger(TestMybatis.class);
 //	private ApplicationContext ac = null;
+	@Autowired
+	private UserMapper userMapper;
+	
 	@Resource
 	private UserService userService = null;
 	@Resource
@@ -37,6 +42,21 @@ public class TestMybatis {
 //		ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		userService = (IUserService) ac.getBean("userService");
 //	}
+	
+	@Test
+	public void login() {
+	// User user = new User(null, "wx", "123456", new Date());
+	// User user = new User(null, "wangxin", "123456", new Date());
+	// User loginExit = userMapper.login(user);
+	 User loginExit = userMapper.login("chenv", "cc");
+//	User loginExit = userMapper.login("wangxin", "123456");
+	if (loginExit == null) {
+	System.out.println("用户不存在");
+	} else {
+	System.out.println(loginExit);
+	System.out.println("登录成功！");
+	}
+	}
 	
 	@Test
 	public void test1() {

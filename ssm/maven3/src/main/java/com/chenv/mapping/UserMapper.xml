@@ -10,6 +10,14 @@
   <sql id="Base_Column_List" >
     id, user_name, password, age
   </sql>
+  <select id="login" resultMap="BaseResultMap">
+	select * from
+	user_t
+	where
+	user_name = #{name,jdbcType=VARCHAR}
+	and password = #{password,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,6 +1,0 @@
-SSM整合的理解
-1. 利用mybatis generator生成dao mapper 和映射表
-2. 配置spring-mybatis.xml文件 将spring与mybatis整合在一起
-3. 配置jdbc文件 这样spring-mybatis.xml配置文件就可以调用配置文件
-4. 编写业务接口和实现
-5. 配置spring-mvc.xml文件 编写controller
