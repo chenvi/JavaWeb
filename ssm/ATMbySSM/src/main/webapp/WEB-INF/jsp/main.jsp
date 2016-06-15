@@ -11,8 +11,12 @@
 </head>
 
 <body>
-Welcome
-	<font color="red">${requestScope.account.cardnum} </font>!
+<!-- 禁止页面返回 --> 
+<script language="JavaScript"> 
+  javascript:window.history.forward(1);  
+</script> 
+Welcome  <font color="red">${sessionScope.account.cardnum}</font><br />
+	
 <table width="691" border="1" align="center">
   <tr>
     <th width="154" scope="col"><a href="./balance">查询余额</a></th>
@@ -22,5 +26,6 @@ Welcome
     <th width="112" scope="col"><a href="./exit">取卡退出</th>
   </tr>
 </table>
+<h3><font color="red"> ${errorMsg }</font></h3>
 </body>
 </html>

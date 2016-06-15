@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" session="true" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,11 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<%   
+  session.invalidate();   
+%> 
+<!-- 禁止页面返回 --> 
+<script language="JavaScript"> 
+  javascript:window.history.forward(1);  
+</script> 
+ 
 	<form name="form1" method="post" action="../">
 	  <table width="269" border="1" align="center">
         <tr>
           <th width="239" height="36" align="center" bordercolor="#F0F0F0" scope="col"><label>
-             ${message}
+            <h3><font color="red">${message}</font></h3> 
           </label></th>
         </tr>
         <tr>

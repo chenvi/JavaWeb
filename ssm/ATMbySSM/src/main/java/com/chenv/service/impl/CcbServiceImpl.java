@@ -14,8 +14,14 @@ public class CcbServiceImpl implements CcbService {
 	private AccountsMapper account;
 	//保存登录信息
 	private Accounts aAccount = new Accounts();
-	
+		
 	@Override
+	public Accounts setAccounts(Accounts accounts) {
+		this.aAccount = accounts;
+		return null;
+	}
+
+	/*@Override
 	public Accounts login(String cardnum, String pwd) {
 		aAccount.setCardnum(cardnum);
 		aAccount.setPassword(pwd);
@@ -28,7 +34,7 @@ public class CcbServiceImpl implements CcbService {
 			return null;
 		}
 		
-	}
+	}*/
 
 	@Override
 	public boolean changePwd(String pwd, String newPwd) {
@@ -49,9 +55,16 @@ public class CcbServiceImpl implements CcbService {
 	@Override
 	public boolean fetch(double money) {
 		try {
-			aAccount.setAccount(aAccount.getAccount()-money);
-			this.account.updateByPrimaryKeySelective(aAccount);
-			return true;
+			double newMoney = aAccount.getAccount()-money;
+			
+			if(newMoney>=0){
+				aAccount.setAccount(newMoney);
+				this.account.updateByPrimaryKeySelective(aAccount);
+				return true;
+			}else {
+				return false;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

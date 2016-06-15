@@ -35,10 +35,10 @@ public class TestMybatis {
 //	}
 	
 	
-	@Test
-	public void testAccount(){
-		System.out.println(this.ccbService.login("43670001","12346"));
-	}
+//	@Test
+//	public void testAccount(){
+//		System.out.println(this.ccbService.login("43670001","12346"));
+//	}
 	
 	@Test
 	public void testFetch(){

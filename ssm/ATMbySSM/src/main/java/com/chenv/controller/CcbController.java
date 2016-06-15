@@ -3,8 +3,10 @@ package com.chenv.controller;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,30 +14,39 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.chenv.dao.AccountsMapper;
 import com.chenv.pojo.Accounts;
 import com.chenv.service.CcbService;
 
 
 
 @Controller
-@Scope("prototype")
 @RequestMapping("/ccb")
 public class CcbController {
   @Resource
   private CcbService ccbService;
+  @Autowired
+  private AccountsMapper accountsMapper;
   
   @RequestMapping("/login")
-  public String toLogin(HttpServletRequest request,Model model){
+  public String toLogin(HttpServletRequest request,Model model,HttpSession session){
+	  
     String cardnum = request.getParameter("cardnum");
     String pwd = request.getParameter("pwd");
-    Accounts accountLoginAccounts = this.ccbService.login(cardnum, pwd);
-    if (accountLoginAccounts!=null) {
-    	model.addAttribute("account",accountLoginAccounts);
+    Accounts loginAccount = new Accounts();
+    loginAccount.setCardnum(cardnum);
+    loginAccount.setPassword(pwd);
+    
+    loginAccount = this.accountsMapper.findAccounts(loginAccount);
+    
+    if (loginAccount!=null) {
+    	model.addAttribute("account",loginAccount);
+    	session.setAttribute("account", loginAccount);
+    	this.ccbService.setAccounts(loginAccount);
     	 return "main";
 	} else {
 		return "error";
 	}
-//    model.addAttribute("account", account);
    
   }
   
@@ -59,9 +70,13 @@ public class CcbController {
   public String fetch(HttpServletRequest request,Model model){
 	  if(request.getParameter("cancel")!=null) return "main";
 	  if(request.getParameter("sure")!=null) {
-		  this.ccbService.fetch(Double.parseDouble(request.getParameter("money")));
-		  model.addAttribute("message", "请取钞！！！");
-		  return "success";
+		  if (this.ccbService.fetch(Double.parseDouble(request.getParameter("money")))) {
+			  model.addAttribute("message", "请取钞！！！");
+			  return "success";
+		}else {
+			model.addAttribute("errorMsg","余额不足！！！");
+			return "main";
+		}
 	  }
 	  return "main";
   }

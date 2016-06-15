@@ -1,10 +1,13 @@
 package com.chenv.service;
 
+import com.chenv.dao.AccountsMapper;
 import com.chenv.pojo.Accounts;
 
 public interface CcbService {
 	
-	Accounts login(String cardnum, String pwd);
+	Accounts setAccounts(Accounts accounts);
+	
+//	Accounts login(String cardnum, String pwd);
 	
 	boolean changePwd(String pwd, String newPwd);
 	

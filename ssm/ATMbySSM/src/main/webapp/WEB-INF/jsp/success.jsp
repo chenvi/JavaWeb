@@ -11,7 +11,7 @@
 	  <table width="269" border="1" align="center">
         <tr>
           <th width="239" height="36" align="center" bordercolor="#F0F0F0" scope="col"><label>
-             ${message}
+            <h3> <font color="red"> ${message}</font></h3> 
           </label></th>
         </tr>
         <tr>
