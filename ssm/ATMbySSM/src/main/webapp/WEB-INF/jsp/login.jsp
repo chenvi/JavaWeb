@@ -7,10 +7,16 @@
 <title>login</title>
 </head>
 <body>
+<h1><div align="center">ATM自动柜员机</div></h1>
+<hr>
 	<form action="./ccb/login" method="post">
-	卡号：<input name="cardnum" type="text" /><br/>
-	密码：<input name="pwd" type="password" /><br/>
-	<input type="submit" value="提交"><br/>
-  </form>
+	  <div align="center">
+	  卡号：<input name="cardnum" type="text" style="width: 154px; "/><br>
+	  <br>
+	 密码：<input name="pwd" type="password" style="width: 154px; "/><br>
+	<input type="submit" value="提交">
+	<br/>
+      </div>
+	</form>
 </body>
 </html>

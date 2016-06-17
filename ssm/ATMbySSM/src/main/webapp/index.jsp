@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>主页</title>
-     <jsp:forward page="/WEB-INF/jsp/login.jsp"></jsp:forward>
+    <!--   <jsp:forward page="/WEB-INF/jsp/login.jsp"></jsp:forward>-->
 <body>
   <form action="./ccb/login" method="post">
   <center>${map.error }</center>

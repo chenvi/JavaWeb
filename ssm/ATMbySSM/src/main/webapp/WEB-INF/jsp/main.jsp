@@ -15,7 +15,7 @@
 <script language="JavaScript"> 
   javascript:window.history.forward(1);  
 </script> 
-Welcome  <font color="red">${sessionScope.account.cardnum}</font><br />
+<div align="right">»¶Ó­  <font color="red">${sessionScope.loginAccount.cardnum}</font><br /><br /></div>
 	
 <table width="691" border="1" align="center">
   <tr>

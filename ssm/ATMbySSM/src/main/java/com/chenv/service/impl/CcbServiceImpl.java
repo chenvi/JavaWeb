@@ -1,5 +1,9 @@
 package com.chenv.service.impl;
 
+import javax.jms.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,27 +18,26 @@ public class CcbServiceImpl implements CcbService {
 	private AccountsMapper account;
 	//保存登录信息
 	private Accounts aAccount = new Accounts();
-		
+	
 	@Override
-	public Accounts setAccounts(Accounts accounts) {
-		this.aAccount = accounts;
-		return null;
+	public Accounts login(HttpServletRequest request) {
+		 HttpSession session = request.getSession();
+		 String cardnum = request.getParameter("cardnum");
+		 String pwd = request.getParameter("pwd");
+		 Accounts loginAccount = new Accounts();
+		 loginAccount.setCardnum(cardnum);
+		 loginAccount.setPassword(pwd);
+		    
+		 loginAccount = this.account.findAccounts(loginAccount);
+		    
+		 if (loginAccount!=null) {
+			 	 aAccount = loginAccount;
+		    	 return loginAccount;
+			} else {
+				return null;
+			}
 	}
 
-	/*@Override
-	public Accounts login(String cardnum, String pwd) {
-		aAccount.setCardnum(cardnum);
-		aAccount.setPassword(pwd);
-		if (this.account.findAccounts(aAccount)!= null) {
-			//登录信息最初都是null 需要从mysql获取id来完善登录信息
-			aAccount = this.account.findAccounts(aAccount);
-			return this.account.findAccounts(aAccount);
-		}else {
-			aAccount=null;//如果不是正确用户就不保存信息
-			return null;
-		}
-		
-	}*/
 
 	@Override
 	public boolean changePwd(String pwd, String newPwd) {
@@ -49,9 +52,14 @@ public class CcbServiceImpl implements CcbService {
 
 	@Override
 	public Accounts queryBalance() {
-		return this.account.findAccounts(aAccount);
+		return null;
 	}
 
+	/**
+	 * 取款
+	 * @param money
+	 * @return
+	 */
 	@Override
 	public boolean fetch(double money) {
 		try {

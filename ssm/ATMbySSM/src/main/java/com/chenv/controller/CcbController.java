@@ -25,24 +25,19 @@ import com.chenv.service.CcbService;
 public class CcbController {
   @Resource
   private CcbService ccbService;
-  @Autowired
-  private AccountsMapper accountsMapper;
   
   @RequestMapping("/login")
-  public String toLogin(HttpServletRequest request,Model model,HttpSession session){
+  public String toLogin(HttpServletRequest request,Model model){
 	  
-    String cardnum = request.getParameter("cardnum");
-    String pwd = request.getParameter("pwd");
-    Accounts loginAccount = new Accounts();
-    loginAccount.setCardnum(cardnum);
-    loginAccount.setPassword(pwd);
-    
-    loginAccount = this.accountsMapper.findAccounts(loginAccount);
-    
-    if (loginAccount!=null) {
-    	model.addAttribute("account",loginAccount);
-    	session.setAttribute("account", loginAccount);
-    	this.ccbService.setAccounts(loginAccount);
+	  //从request获取session
+	  HttpSession session = request.getSession();
+	  
+	  //利用业务层进行登录验证，如果登录成功则返回用户信息
+	  Accounts loginAccount =  this.ccbService.login(request);
+	  
+	  //将用户信息放进session中
+    if (loginAccount != null) {
+    	session.setAttribute("loginAccount", loginAccount);
     	 return "main";
 	} else {
 		return "error";
@@ -62,7 +57,7 @@ public class CcbController {
   
   @RequestMapping("/balance")
   public String balance(HttpServletRequest request,Model model){
-	  model.addAttribute("account", this.ccbService.queryBalance());
+	  //直接从session中获取用户
 	  return "balance";
   }
   
@@ -70,7 +65,8 @@ public class CcbController {
   public String fetch(HttpServletRequest request,Model model){
 	  if(request.getParameter("cancel")!=null) return "main";
 	  if(request.getParameter("sure")!=null) {
-		  if (this.ccbService.fetch(Double.parseDouble(request.getParameter("money")))) {
+		  boolean isFetch = this.ccbService.fetch(Double.parseDouble(request.getParameter("money")));
+		  if (isFetch) {
 			  model.addAttribute("message", "请取钞！！！");
 			  return "success";
 		}else {

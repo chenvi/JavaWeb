@@ -9,12 +9,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
+import com.chenv.dao.AccountsMapper;
+import com.chenv.pojo.Accounts;
 import com.chenv.service.CcbService;
 
 
@@ -40,9 +43,17 @@ public class TestMybatis {
 //		System.out.println(this.ccbService.login("43670001","12346"));
 //	}
 	
+	@Autowired
+	private AccountsMapper accountsMapper;
+	
 	@Test
 	public void testFetch(){
-		this.ccbService.fetch(100.0);
+//		this.ccbService.fetch(100.0);
+		Accounts accounts = new Accounts();
+		accounts.setId(12);
+		accounts.setCardnum("总");
+		accountsMapper.insert(accounts);
+		
 	}
 	
 }
