@@ -13,17 +13,18 @@ body,td,th {
 </head>
 
 <body>
-<p>添加餐桌
-  <%
-	FoodType foodType = (FoodType)request.getAttribute("foodtype");
-%>
-</p>
+<h3>
+添加餐桌
+</h3>
+<p>
 <table width="310" border="0">
   <tr>
-    <td width="120">餐桌名称</td>
+    <td colspan="2" align="center" width="200">    
     <form name="form1" method="post" action="${pageContext.request.contextPath}/dinnertable/dinnertable?method=add">
-    <td width="174"><input type="text" name="tablename" value=""></td>
+    	餐桌名称
+    <input type="text" name="tablename" value=""></td>
   </tr>
+  <tr height="10"></tr>
   <tr>
     <td align="center" valign="middle">
       <input type="submit" name="add"  value="添加">
@@ -33,6 +34,6 @@ body,td,th {
     </form></td>
   </tr>
 </table>
-<p>&nbsp;</p>
+</p>
 </body>
 </html>
