@@ -20,6 +20,11 @@
     delete from orderdetail
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <delete id="deleteAll">
+  	delete from orderdetail
+  </delete>
+  
   <insert id="insert" parameterType="com.chenv.pojo.OrderDetail" >
     insert into orderdetail (id, order_id, food_id, 
       food_count)

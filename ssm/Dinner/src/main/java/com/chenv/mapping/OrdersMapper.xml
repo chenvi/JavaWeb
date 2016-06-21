@@ -20,6 +20,11 @@
     delete from orders
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <delete id="deleteAll">
+  	delete from orders
+  </delete>
+  
   <insert id="insert" parameterType="com.chenv.pojo.Orders" >
     insert into orders (id, table_id, order_date, 
       table_status)

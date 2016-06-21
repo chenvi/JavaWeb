@@ -14,10 +14,24 @@
     from foodtype
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="listAll" resultMap="BaseResultMap">
+  	select * from foodtype
+  </select>
+  
+  <select id="listAllByTypeName" resultMap="BaseResultMap" parameterType="com.chenv.pojo.FoodType">
+  	select * from foodtype where type_name = #{typeName,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from foodtype
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <delete id="deleteAll">
+  	 delete from foodtype
+  </delete>
+  
   <insert id="insert" parameterType="com.chenv.pojo.FoodType" >
     insert into foodtype (id, type_name)
     values (#{id,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})

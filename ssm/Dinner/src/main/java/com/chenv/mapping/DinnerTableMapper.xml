@@ -16,10 +16,24 @@
     from dinnertable
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select * from dinnertable
+  </select>
+  
+  <select id="listAllByTypeName" resultMap="BaseResultMap" parameterType="com.chenv.pojo.DinnerTable">
+  	select * from dinnertable where table_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from dinnertable
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  
+  <delete id="deleteAll">
+  	delete from dinnertable
+  </delete>
+  
   <insert id="insert" parameterType="com.chenv.pojo.DinnerTable" >
     insert into dinnertable (id, table_name, table_status, 
       order_date)
@@ -76,6 +90,13 @@
     update dinnertable
     set table_name = #{tableName,jdbcType=VARCHAR},
       table_status = #{tableStatus,jdbcType=INTEGER},
+      order_date = #{orderDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateById" parameterType="com.chenv.pojo.DinnerTable" >
+    update dinnertable
+    set table_status = #{tableStatus,jdbcType=INTEGER},
       order_date = #{orderDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -4,6 +4,8 @@ import com.chenv.pojo.OrderDetail;
 
 public interface OrderDetailMapper {
     int deleteByPrimaryKey(Integer id);
+    
+    int deleteAll();
 
     int insert(OrderDetail record);
 
