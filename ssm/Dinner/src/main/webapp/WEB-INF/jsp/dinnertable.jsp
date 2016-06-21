@@ -22,7 +22,7 @@ body,td,th {
     <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/dinnertable/todo?service=index">系统菜单</a></th>
   </tr>
 </table>
-<p>&nbsp; </p>
+
 <form name="form1" method="post" action="./dinnertable?method=search">
   <p>
   <input type="text" name="tableName" id="textfield">
@@ -30,8 +30,8 @@ body,td,th {
 </p>
 </form>
 
-  <table width="752" border="1" cellpadding="5" cellspacing="0">
-    <tr>
+  <table width="750" border="1" cellpadding="5" cellspacing="0">
+    <tr height="10">
       <td width="100" align="center">编号</td>
       <td width="100" align="center">桌名</td>
       <td width="100" align="center">状态</td>
@@ -41,7 +41,7 @@ body,td,th {
 
 <c:forEach items="${dinnertables}" var="dinnertable">
 
-<tr>
+<tr height="10">
 	<td width="100" align="center">${dinnertable.id}</td>
 	<td width="100" align="center">${dinnertable.tableName}</td>
 	<td width="100" align="center">
