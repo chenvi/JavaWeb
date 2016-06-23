@@ -31,8 +31,18 @@ body, td, th {
 		</tr>
 		<tr>
 			<td width="120">菜系</td>
-			<td width="174"><input type="text" name="foodTypeId" ></td>
-		</tr>
+			<td>
+				<select name="foodTypeId" id="select">
+					<option value="">-请选择菜系-</option>
+					<c:forEach items="${foodType }" var="foodType">
+					<!--  <option <c:if test="${models.clientType}==0">selected</c:if> value="0">-->
+					<option value="${foodType.id }">	
+						${ foodType.typeName}
+					</option>
+					</c:forEach>
+				</select>
+			</td>
+		</tr>	
 		<tr>
 			<td width="120">价格</td>
 			<td width="174"><input type="text" name="price"></td>

@@ -47,11 +47,11 @@ body,td,th {
 	  <td width="215" align="center">${food.price}</td>
 	  <td width="215" align="center">${food.mprice}</td>
 	  <td width="215" height="20" align="center">
-	  <form method="post" action="./todo?service=foodUpdate">
+	  <form method="post" action="${pageContext.request.contextPath}/food/todo?service=foodUpdate">
 		  <input type="hidden" name="id" value="${food.id}">
 	      <input type="submit" name="update" value="更新">
 	  </form>	  
-      <form method="post" action="./food?method=delete">
+      <form method="post" action="${pageContext.request.contextPath}/food/food?method=delete">
 	      <input type="hidden" name="id" value="${food.id}">
 		  <input type="submit" name="delete"  value="删除">
 	  </form>

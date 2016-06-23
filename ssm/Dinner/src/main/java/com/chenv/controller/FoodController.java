@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.chenv.pojo.Food;
 import com.chenv.pojo.FoodType;
 import com.chenv.service.FoodService;
+import com.chenv.service.FoodTypeService;
 
 @Controller
 @RequestMapping("/food")
 public class FoodController {
 	@Resource
 	private FoodService foodService;
+	@Resource
+	private FoodTypeService foodTypeService;
 	
 	@RequestMapping("todo")
 	public String toDo(HttpServletRequest request,Model model){
@@ -27,7 +30,12 @@ public class FoodController {
 			int id = Integer.parseInt(request.getParameter("id"));
 			model.addAttribute("food", this.foodService.findById(id));
 			return toDoService;
-		} 
+		}
+		if(toDoService.equals("foodAdd")){
+			List<FoodType> foodTypes = null;
+			model.addAttribute("foodType",this.foodTypeService.listAll());
+			return "foodAdd";
+		}
 		return toDoService;
 	}
 	
