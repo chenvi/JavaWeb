@@ -41,11 +41,13 @@ body,td,th {
 	  <td width="215" height="20" align="center">${foodtype.id}</td>
 	  <td width="231" align="center">${foodtype.typeName}</td>
 	  <td width="215" height="20" align="center">
-	  <form method="post" action="./todo?service=foodtypeUpdate&id=${foodtype.id}">
-      <input type="submit" name="update" value="更新">
+	  <form method="post" action="./todo?service=foodtypeUpdate">
+		  <input type="hidden" name="id" value="${foodtype.id}">
+	      <input type="submit" name="update" value="更新">
 	  </form>	  
-      <form method="post" action="./foodtype?method=delete&id=${foodtype.id}">
-	  <input type="submit" name="delete"  value="删除">
+      <form method="post" action="./foodtype?method=delete">
+	      <input type="hidden" name="id" value="${foodtype.id}">
+		  <input type="submit" name="delete"  value="删除">
 	  </form>
 	  </td>
 	</tr>

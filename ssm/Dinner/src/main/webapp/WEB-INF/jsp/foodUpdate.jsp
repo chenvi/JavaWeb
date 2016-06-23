@@ -22,7 +22,7 @@ body,td,th {
 <table width="310" border="0">
   <tr>
     <td width="120">菜名</td>
-    <form name="form1" method="post" action="${pageContext.request.contextPath}/food/food?method=update&id=${food.id}">
+    <form name="form1" method="post" action="${pageContext.request.contextPath}/food/food?method=update">
     <td width="174"><input type="text" name="foodName" value="${food.foodName }"></td>
   </tr>
   <tr>
@@ -47,6 +47,7 @@ body,td,th {
   </tr>
   <tr>
     <td align="center" valign="middle">
+      <input type="hidden" name="id" value="${food.id}">
       <input type="submit" name="update"  value="更新">
     </form></td>
     <td align="center" valign="middle"><form method="post" action="${pageContext.request.contextPath}/food/food?method=index">
