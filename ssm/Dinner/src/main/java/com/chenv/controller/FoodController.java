@@ -32,12 +32,12 @@ public class FoodController {
 			return toDoService;
 		}
 		if(toDoService.equals("foodAdd")){
-			List<FoodType> foodTypes = null;
 			model.addAttribute("foodType",this.foodTypeService.listAll());
 			return "foodAdd";
 		}
 		return toDoService;
 	}
+	
 	
 	@RequestMapping("food")
 	public String food(HttpServletRequest request, Model model){
@@ -47,6 +47,7 @@ public class FoodController {
 		if(request.getParameter("method").equals("index")){
 			foodList = this.foodService.listAll();
 			model.addAttribute("foods", foodList);
+			// TODO 完成菜系显示
 			return "food";
 		}
 		

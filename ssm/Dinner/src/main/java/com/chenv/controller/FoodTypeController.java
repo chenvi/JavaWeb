@@ -35,16 +35,17 @@ public class FoodTypeController {
 	@RequestMapping("foodtype")
 	public String foodtype(HttpServletRequest request, Model model){
 		List<FoodType> foodTypeList = null;
+		String method = request.getParameter("method");
 		
 		//到菜系列表的页面
-		if(request.getParameter("method").equals("index")){
+		if("index".equals(method)){
 			foodTypeList = this.foodTypeService.listAll();
 			model.addAttribute("foodtypes", foodTypeList);
 			return "foodtype";
 		}
 		
 		//处理搜索
-		if(request.getParameter("method").equals("search")){
+		if("search".equals(method)){
 			String serachName = (String) request.getParameter("foodtypename");
 
 			if(!serachName.isEmpty())
@@ -57,7 +58,7 @@ public class FoodTypeController {
 		}
 		
 		//处理更新
-		if (request.getParameter("update") != null) {
+		if ("update".equals(method)) {
 			FoodType foodType = new FoodType();
 			int id = Integer.parseInt(request.getParameter("id"));
 			String foodtype = request.getParameter("foodtypename");
@@ -73,7 +74,7 @@ public class FoodTypeController {
 		}
 		
 		//处理删除
-		if (request.getParameter("method").equals("delete")) {
+		if ("delete".equals(method)) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			this.foodTypeService.delete(id);
 			
@@ -84,7 +85,7 @@ public class FoodTypeController {
 		}
 		
 		//添加
-		if (request.getParameter("method").equals("add")) {
+		if ("add".equals(method)) {
 			String foodTypeName = request.getParameter("foodtypename");
 			FoodType foodType = new FoodType();
 			foodType.setTypeName(foodTypeName);

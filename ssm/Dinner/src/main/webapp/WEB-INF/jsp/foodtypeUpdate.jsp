@@ -19,21 +19,25 @@ body,td,th {
 <p>更新菜系
 
 </p>
-<table width="310" border="0">
-  <tr>
-    <td width="120">菜系名称</td>
-    <form name="form1" method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=update&id=${foodtype.id }">
-    <td width="174"><input type="text" name="foodtypename" value="${foodtype.typeName }"></td>
-  </tr>
-  <tr>
-    <td align="center" valign="middle">
-      <input type="submit" name="update"  value="更新">
-    </form></td>
-    <td align="center" valign="middle"><form method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=index">
-      <input type="submit" name="cancel"  value="取消">
-    </form></td>
-  </tr>
-</table>
+<form name="form1" method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=update">
+	<table width="310" border="0">
+	  <tr>
+	    <td width="120">菜系名称</td>
+	    <td width="174">
+	    	<input type="hidden" name="id" value="${foodtype.id }">
+	    	<input type="text" name="foodtypename" value="${foodtype.typeName }">
+	    </td>
+	  </tr>
+	  <tr>
+	    <td align="center" valign="middle">
+	      <input type="submit" name="update"  value="更新">
+	    </td>
+	    <td align="center" valign="middle">
+	    	<a href="javascript:history.go(-1)"><input type="button" value="取消"></a>
+	    </td>
+	  </tr>
+	</table>
+</form>
 <p>&nbsp;</p>
 </body>
 </html>
