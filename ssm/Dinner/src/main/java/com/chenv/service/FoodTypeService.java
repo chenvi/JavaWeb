@@ -17,4 +17,6 @@ public interface FoodTypeService {
 	List<FoodType> listAll(String typeName);
 
 	FoodType findById(int id);
+	
+	boolean isExist(String typeName);
 }

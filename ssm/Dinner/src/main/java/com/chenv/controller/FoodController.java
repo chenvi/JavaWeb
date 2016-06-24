@@ -1,6 +1,10 @@
 package com.chenv.controller;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +32,7 @@ public class FoodController {
 		
 		if("foodUpdate".equals(page)){
 			int id = Integer.parseInt(request.getParameter("id"));
+			model.addAttribute("foodType",this.foodTypeService.listAll());
 			model.addAttribute("food", this.foodService.findById(id));
 			return page;
 		}
@@ -40,35 +45,53 @@ public class FoodController {
 	
 	@RequestMapping("list")
 	public String list(HttpServletRequest request, Model model){
-		List<Food> foodList = null;
-		foodList = this.foodService.listAll();
-		model.addAttribute("foods", foodList);
+		List<Food> foodList = this.foodService.listAll();
+		Map<Food, String> map = new LinkedHashMap<Food, String>();
+		
+		Iterator<Food> iterator = foodList.iterator();
+		while (iterator.hasNext()) {
+			Food food = (Food) iterator.next();
+			map.put(food, this.foodTypeService.findById(food.getFoodTypeId()).getTypeName());
+		}
+		
+		model.addAttribute("map", map);
 		return "food";
 	}
 
 	@RequestMapping("add")
 	public String add(HttpServletRequest request, Model model){
+		
 		String foodName = request.getParameter("foodname");
-		int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
-		double price = Double.parseDouble(request.getParameter("price"));
-		double mprice = Double.parseDouble(request.getParameter("mprice"));
-		String mark = request.getParameter("mark");
-		String img = request.getParameter("img");
 		
-		Food food = new Food();
-		food.setFoodName(foodName);
-		food.setFoodTypeId(foodTypeId);
-		food.setPrice(price);
-		food.setMprice(mprice);
-		food.setRemark(mark);
-		food.setImg(img);
+		if (this.foodService.isExist(foodName)) {
+			model.addAttribute("msg","菜名已经存在！！！");
+			return "error";
+		}
 		
-		this.foodService.add(food);
+		else {
+				int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
+				double price = Double.parseDouble(request.getParameter("price"));
+				double mprice = Double.parseDouble(request.getParameter("mprice"));
+				String mark = request.getParameter("mark");
+				String img = request.getParameter("img");
+				
+				Food food = new Food();
+				food.setFoodName(foodName);
+				food.setFoodTypeId(foodTypeId);
+				food.setPrice(price);
+				food.setMprice(mprice);
+				food.setRemark(mark);
+				food.setImg(img);
+				
+				this.foodService.add(food);
+				
+				List<Food> foodList = this.foodService.listAll();
+				
+				model.addAttribute("foods", foodList);
+				return "food";
+		}
 		
-		List<Food> foodList = this.foodService.listAll();
 		
-		model.addAttribute("foods", foodList);
-		return "food";
 	}
 	
 	@RequestMapping("delete")
@@ -102,9 +125,9 @@ public class FoodController {
 		food.setImg(img);
 		
 		this.foodService.update(food);
-		List<Food> foodList =this.foodService.listAll();
 		
-		model.addAttribute("foods", foodList);
+		list(request, model);
+		
 		return "food";
 	}
 

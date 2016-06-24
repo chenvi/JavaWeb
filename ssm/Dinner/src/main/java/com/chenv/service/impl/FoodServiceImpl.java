@@ -56,4 +56,11 @@ public class FoodServiceImpl implements FoodService {
 		return this.foodMapper.selectByPrimaryKey(id);
 	}
 
+	@Override
+	public boolean isExist(String typeName) {
+		Food food = new Food();
+		food.setFoodName(typeName);
+		return !this.foodMapper.listAllByTypeName(food).isEmpty();
+	}
+
 }

@@ -19,7 +19,9 @@ body,td,th {
 <p>添加菜系
 
 </p>
-<form name="form1" method="post" action="${pageContext.request.contextPath}/foodtype/add">
+<form name="form1" method="post" 
+	onsubmit="return validate(this);"
+	action="${pageContext.request.contextPath}/foodtype/add">
 <table width="310" border="0">
   <tr>
     <td width="120">菜系名称</td>    
@@ -33,11 +35,39 @@ body,td,th {
     </td>
     <td align="center" valign="middle">
       <a href="javascript:history.go(-1)">
-      	<input type="submit" name="cancel"  value="取消">
+      	<input type="button" name="cancel"  value="取消">
       </a>
     </td>
   </tr>
 </table>
 </form>
+
+<script type="text/javascript">
+		function validate(form1)
+		{
+			if(form1.foodtypename.value=="")
+			{
+				alert("菜系不能为空");
+				return false;
+			}
+			else if(form1.price.value=="")
+			{
+				alert("价格不能为空");
+				return false;
+			}
+			else if(form1.mprice.value=="")
+			{
+				alert("会员价不能为空");
+				return false;
+			}
+			return true;
+		} 
+		
+		function isNumber(str)          // 判断是否为非负整数
+		{
+			var rx = /^[0-9]+$/;
+			return rx.test(str);
+		}					
+ </script>
 </body>
 </html>

@@ -1,11 +1,18 @@
 package com.chenv.dao;
 
+import java.util.List;
+
+import com.chenv.pojo.Food;
 import com.chenv.pojo.Orders;
 
 public interface OrdersMapper {
     int deleteByPrimaryKey(Integer id);
     
     int deleteAll();
+    
+    List<Orders> listAll();
+    
+    List<Orders> listAllByTableId(Orders record);
 
     int insert(Orders record);
 

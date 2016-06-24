@@ -20,7 +20,7 @@ body, td, th {
 <body>
 	<p>添加菜品</p>
 	<form name="form1" method="post"
-	  onsubmit="return validate(this);"action="${pageContext.request.contextPath}/food/add">
+	  onsubmit="return validate(this);" action="${pageContext.request.contextPath}/food/add">
 	<table width="310" border="0">
 	
 		<tr>

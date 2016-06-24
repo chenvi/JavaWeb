@@ -15,9 +15,13 @@ import com.chenv.dao.FoodTypeMapper;
 import com.chenv.pojo.DinnerTable;
 import com.chenv.pojo.Food;
 import com.chenv.pojo.FoodType;
+import com.chenv.pojo.OrderDetail;
+import com.chenv.pojo.Orders;
 import com.chenv.service.DinnerTableService;
 import com.chenv.service.FoodService;
 import com.chenv.service.FoodTypeService;
+import com.chenv.service.OrderDetailService;
+import com.chenv.service.OrdersService;
 import com.mysql.fabric.xmlrpc.base.Data;
 
 @RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
@@ -34,6 +38,10 @@ public class TestDinner {
 	private DinnerTableService dinnerTableService;
 	@Autowired
 	private FoodService foodService;
+	@Autowired
+	private OrderDetailService orderDetailService;
+	@Autowired
+	private OrdersService ordersService;
 	
 	@Test
 	public void testFood(){
@@ -118,7 +126,9 @@ public class TestDinner {
 //			System.out.println(dinnerTable2.getTableName());
 //		}
 		
-		this.dinnerTableService.reserve(3);
+//		this.dinnerTableService.reserve(3);
+		
+		System.out.println(this.dinnerTableService.isExist("滕阁"));
 	}
 	
 	@Test
@@ -138,5 +148,19 @@ public class TestDinner {
 			System.out.println(food1.getFoodName());
 			
 		}
+	}
+	
+	@Test
+	public void testOrders(){
+		Orders orders = new Orders();
+		Date date = new Date(new java.util.Date().getTime());
+		
+		orders.setOrderDate(date);
+		orders.setTableId(15);
+		orders.setTableStatus(1);
+		
+		this.ordersService.add(orders);
+		
+		this.ordersService.listAll();
 	}
 }

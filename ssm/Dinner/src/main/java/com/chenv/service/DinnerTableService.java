@@ -24,4 +24,6 @@ public interface DinnerTableService {
 	void reserve(int id);
 	
 	void returnTable(int id);
+	
+	boolean isExist(String tableName);
 }

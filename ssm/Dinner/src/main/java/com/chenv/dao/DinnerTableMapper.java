@@ -24,4 +24,5 @@ public interface DinnerTableMapper {
     int updateByPrimaryKey(DinnerTable record);
     
     int updateById(DinnerTable record);
+    
 }

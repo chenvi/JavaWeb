@@ -32,25 +32,28 @@ body,td,th {
 
   <table width="752" border="1" cellpadding="5" cellspacing="0">
     <tr>
-      <td width="215" align="center">菜系编号</td>
+     <!--  <td width="215" align="center">菜系编号</td> -->
       <td width="231" align="center">菜系名称</td>
-      <td width="215" align="center">操作</td>
+      <td width="215" align="center" >操作</td>
     </tr>
 <c:forEach items="${foodtypes}" var="foodtype">
 	<tr>
-	  <td width="215" height="20" align="center">${foodtype.id}</td>
+	 <!--   <td width="215" height="20" align="center">${foodtype.id}</td> -->
 	  <td width="231" align="center">${foodtype.typeName}</td>
-	  <td width="215" height="20" align="center">
+	  
+	  <td width="100" height="20" align="center">
 	  <form method="post" action="${pageContext.request.contextPath}/foodtype/to">
 	  	  <input type="hidden" name="page" value="foodtypeUpdate">
 		  <input type="hidden" name="id" value="${foodtype.id}">
 	      <input type="submit" name="update" value="更新">
-	  </form>	  
+	  </form>
+	  
       <form method="post" action="${pageContext.request.contextPath}/foodtype/delete">
 	      <input type="hidden" name="id" value="${foodtype.id}">
 		  <input type="submit" name="delete"  value="删除">
 	  </form>
 	  </td>
+	  
 	</tr>
 </c:forEach>
 </table>

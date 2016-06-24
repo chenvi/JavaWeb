@@ -15,7 +15,7 @@
     <include refid="Base_Column_List" />
     from dinnertable
     where id = #{id,jdbcType=INTEGER}
-  </select>
+  </select> 
   
   <select id="listAll" resultMap="BaseResultMap">
   	select * from dinnertable

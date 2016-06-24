@@ -16,6 +16,15 @@
     from orders
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+   <select id="listAll" resultMap="BaseResultMap">
+  	select * from orders
+  </select>
+  
+  <select id="listAllByTableId" resultMap="BaseResultMap" parameterType="com.chenv.pojo.Orders">
+  	select * from orders where table_id = #{tableId,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from orders
     where id = #{id,jdbcType=INTEGER}

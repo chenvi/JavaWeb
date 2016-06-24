@@ -41,16 +41,25 @@ public class DinnerTableController {
 	@RequestMapping("add")
 	public String add(HttpServletRequest request, Model model){
 		String tableName = request.getParameter("tablename");
-		DinnerTable dinnerTable = new DinnerTable();
-		dinnerTable.setTableName(tableName);
-		dinnerTable.setTableStatus(0);
 		
-		this.dinnerTableService.add(dinnerTable);;
+		if (this.dinnerTableService.isExist(tableName)) {
+			model.addAttribute("msg","餐桌已经存在！！！");
+			return "error";
+		}
 		
-		List<DinnerTable> dinnerTableList = this.dinnerTableService.listAll();
+		else {
+			DinnerTable dinnerTable = new DinnerTable();
+			dinnerTable.setTableName(tableName);
+			dinnerTable.setTableStatus(0);
+			
+			this.dinnerTableService.add(dinnerTable);
+			
+			List<DinnerTable> dinnerTableList = this.dinnerTableService.listAll();
+			
+			model.addAttribute("dinnertables", dinnerTableList);
+			return "dinnertable";
+		}
 		
-		model.addAttribute("dinnertables", dinnerTableList);
-		return "dinnertable";
 	}
 	
 	@RequestMapping("delete")

@@ -34,28 +34,28 @@ body,td,th {
 
   <table width="752" border="1" cellpadding="5" cellspacing="0">
     <tr>
-      <td width="215" align="center">菜编号 </td>
+      <!-- <td width="215" align="center">菜编号 </td>  -->
       <td width="215" align="center">菜名</td>
       <td width="215" align="center">菜系</td>
       <td width="215" align="center">价格</td>
       <td width="215" align="center">会员价</td>
       <td width="215" align="center">操作</td>
     </tr>
-<c:forEach items="${foods}" var="food">
+<c:forEach items="${map}" var="map">
 	<tr>
-	  <td width="215" height="20" align="center">${food.id}</td>
-	  <td width="215" align="center">${food.foodName}</td>
-	  <td width="215" align="center">${food.foodTypeId}</td>
-	  <td width="215" align="center">${food.price}</td>
-	  <td width="215" align="center">${food.mprice}</td>
+	  <%-- <td width="215" height="20" align="center">${map.key.id}</td> --%>
+	  <td width="215" align="center">${map.key.foodName}</td>
+	  <td width="215" align="center">${map.value}</td>
+	  <td width="215" align="center">${map.key.price}</td>
+	  <td width="215" align="center">${map.key.mprice}</td>
 	  <td width="215" height="20" align="center">
 	  <form method="post" action="${pageContext.request.contextPath}/food/to">
 	  	  <input type="hidden" name="page" value="foodUpdate">
-		  <input type="hidden" name="id" value="${food.id}">
+		  <input type="hidden" name="id" value="${map.key.id}">
 	      <input type="submit" name="update" value="更新">
 	  </form>	  
       <form method="post" action="${pageContext.request.contextPath}/food/delete">
-	      <input type="hidden" name="id" value="${food.id}">
+	      <input type="hidden" name="id" value="${map.key.id}">
 		  <input type="submit" name="delete"  value="删除">
 	  </form>
 	  </td>

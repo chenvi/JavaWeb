@@ -76,6 +76,14 @@ public class DinnerTableServiceImpl implements DinnerTableService {
 		
 		this.dinnerTableMapper.updateById(dinnerTable);
 	}
+
+	@Override
+	public boolean isExist(String tableName) {
+		DinnerTable dinnerTable = new DinnerTable();
+		dinnerTable.setTableName(tableName);
+		
+		return !this.dinnerTableMapper.listAllByTypeName(dinnerTable).isEmpty();
+	}
 	
 	
 

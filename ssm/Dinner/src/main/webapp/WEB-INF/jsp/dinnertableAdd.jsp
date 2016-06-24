@@ -17,7 +17,9 @@ body,td,th {
 添加餐桌
 </h3>
 
-<form name="form1" method="post" action="${pageContext.request.contextPath}/dinnertable/add">
+<form name="form1" method="post" 
+	onsubmit="return validate(this);"
+	action="${pageContext.request.contextPath}/dinnertable/add">
 <table width="310" border="0">
   <tr>
     <td colspan="2" align="center" width="200">        
@@ -38,6 +40,32 @@ body,td,th {
   </tr>
 </table>
 </form>
-
+<script type="text/javascript">
+		function validate(form1)
+		{
+			if(form1.tablename.value=="")
+			{
+				alert("桌名不能为空");
+				return false;
+			}
+			else if(form1.price.value=="")
+			{
+				alert("价格不能为空");
+				return false;
+			}
+			else if(form1.mprice.value=="")
+			{
+				alert("会员价不能为空");
+				return false;
+			}
+			return true;
+		} 
+		
+		function isNumber(str)          // 判断是否为非负整数
+		{
+			var rx = /^[0-9]+$/;
+			return rx.test(str);
+		}					
+ </script>
 </body>
 </html>

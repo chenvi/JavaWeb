@@ -42,15 +42,24 @@ public class FoodTypeController {
 	@RequestMapping("add")
 	public String add(HttpServletRequest request, Model model){
 		String foodTypeName = request.getParameter("foodtypename");
-		FoodType foodType = new FoodType();
-		foodType.setTypeName(foodTypeName);
+		if (this.foodTypeService.isExist(foodTypeName)) {
+			model.addAttribute("msg","菜系已经存在！！！");
+			return "error";
+		}
 		
-		this.foodTypeService.add(foodType);
+		else {
+			FoodType foodType = new FoodType();
+			foodType.setTypeName(foodTypeName);
+			
+			this.foodTypeService.add(foodType);
+			
+			List<FoodType> foodTypeList = this.foodTypeService.listAll();
+			
+			model.addAttribute("foodtypes", foodTypeList);
+			return "foodtype";
+		}
 		
-		List<FoodType> foodTypeList = this.foodTypeService.listAll();
 		
-		model.addAttribute("foodtypes", foodTypeList);
-		return "foodtype";
 	}
 	
 	@RequestMapping("delete")
