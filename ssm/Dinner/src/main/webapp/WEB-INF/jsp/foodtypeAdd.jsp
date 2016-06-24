@@ -29,11 +29,11 @@ body,td,th {
     <td align="center" valign="middle">
       <input type="submit" name="add"  value="添加">
     </form></td>
-    <td align="center" valign="middle"><form method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=index">
+    <td align="center" valign="middle"><form method="post" action="javascript:history.go(-1)">
       <input type="submit" name="cancel"  value="取消">
     </form></td>
   </tr>
 </table>
-<p>&nbsp;</p>
+
 </body>
 </html>

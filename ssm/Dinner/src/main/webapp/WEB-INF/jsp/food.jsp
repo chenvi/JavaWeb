@@ -19,11 +19,13 @@ body,td,th {
 <table width="764" border="0">
   <tr>
     <th width="377" align="left" scope="col">菜品列表</th>
-    <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/food/todo?service=index">系统菜单</a></th>
+    <th width="377" align="right" scope="col">
+    	<a href="${pageContext.request.contextPath}/food/to?page=index">系统菜单</a>
+    </th>
   </tr>
 </table>
 <p>&nbsp; </p>
-<form name="form1" method="post" action="${pageContext.request.contextPath}/food?method=search">
+<form name="form1" method="post" action="${pageContext.request.contextPath}/food/search">
   <p>
   <input type="text" name="foodname" id="textfield">
   <input type="submit" name="search"  value="搜索">
@@ -47,11 +49,12 @@ body,td,th {
 	  <td width="215" align="center">${food.price}</td>
 	  <td width="215" align="center">${food.mprice}</td>
 	  <td width="215" height="20" align="center">
-	  <form method="post" action="${pageContext.request.contextPath}/food/todo?service=foodUpdate">
+	  <form method="post" action="${pageContext.request.contextPath}/food/to">
+	  	  <input type="hidden" name="page" value="foodUpdate">
 		  <input type="hidden" name="id" value="${food.id}">
 	      <input type="submit" name="update" value="更新">
 	  </form>	  
-      <form method="post" action="${pageContext.request.contextPath}/food/food?method=delete">
+      <form method="post" action="${pageContext.request.contextPath}/food/delete">
 	      <input type="hidden" name="id" value="${food.id}">
 		  <input type="submit" name="delete"  value="删除">
 	  </form>
@@ -59,6 +62,6 @@ body,td,th {
 	</tr>
 </c:forEach>
 </table>
-<a href="./todo?service=foodAdd">添加</a>
+<a href="${pageContext.request.contextPath}/food/to?page=foodAdd">添加</a>
 </body>
 </html>

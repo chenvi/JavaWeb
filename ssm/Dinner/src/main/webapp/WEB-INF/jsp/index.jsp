@@ -22,7 +22,7 @@ body,td,th {
       <th scope="col"><a href="${pageContext.request.contextPath}/foodtype/foodtype?method=index">菜系管理</a></th>
     </tr>
     <tr>
-      <th scope="col"><a href="${pageContext.request.contextPath}/food/food?method=index">菜品管理</a></th>
+      <th scope="col"><a href="${pageContext.request.contextPath}/food/list">菜品管理</a></th>
     </tr>
     <tr> 
 	<th scope="col" width="200">餐厅订单</th> 

@@ -19,42 +19,46 @@ body,td,th {
 <p>更新菜品
 
 </p>
-<table width="310" border="0">
-  <tr>
-    <td width="120">菜名</td>
-    <form name="form1" method="post" action="${pageContext.request.contextPath}/food/food?method=update">
-    <td width="174"><input type="text" name="foodName" value="${food.foodName }"></td>
-  </tr>
-  <tr>
-    <td width="120">菜系</td>
-    <td width="174"><input type="text" name="foodTypeId" value="${food.foodTypeId }"></td>
-  </tr>
-   <tr>
-  	 <td width="120">价格</td>
-  	  <td width="174"><input type="text" name="price" value="${food.price }"></td>
-  </tr>
-   <tr>
-  	 <td width="120">会员价</td>
-  	  <td width="174"><input type="text" name="mprice" value="${food.mprice }"></td>
-  </tr>
-  <tr>
-  	 <td width="120">描述</td>
-  	  <td width="174"><input type="text" name="mark" value="${food.remark }"></td>
-  </tr>
-  <tr>
-  	 <td width="120">图片</td>
-  	  <td width="174"><input type="text" name="img" value="${food.img }"></td>
-  </tr>
-  <tr>
-    <td align="center" valign="middle">
-      <input type="hidden" name="id" value="${food.id}">
-      <input type="submit" name="update"  value="更新">
-    </form></td>
-    <td align="center" valign="middle"><form method="post" action="${pageContext.request.contextPath}/food/food?method=index">
-      <input type="submit" name="cancel"  value="取消">
-    </form></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
+<form name="form1" method="post" action="${pageContext.request.contextPath}/food/update">
+	<table width="310" border="0">
+	  <tr>
+	    <td width="120">菜名</td>
+	   	<td width="174">
+	   		<input type="text" name="foodName" value="${food.foodName }">
+	   	</td>
+	  </tr>
+	  <tr>
+	    <td width="120">菜系</td>
+	    <td width="174"><input type="text" name="foodTypeId" value="${food.foodTypeId }"></td>
+	  </tr>
+	   <tr>
+	  	 <td width="120">价格</td>
+	  	  <td width="174"><input type="text" name="price" value="${food.price }"></td>
+	  </tr>
+	   <tr>
+	  	 <td width="120">会员价</td>
+	  	  <td width="174"><input type="text" name="mprice" value="${food.mprice }"></td>
+	  </tr>
+	  <tr>
+	  	 <td width="120">描述</td>
+	  	  <td width="174"><input type="text" name="mark" value="${food.remark }"></td>
+	  </tr>
+	  <tr>
+	  	 <td width="120">图片</td>
+	  	  <td width="174"><input type="text" name="img" value="${food.img }"></td>
+	  </tr>
+	  <tr>
+	    <td align="center" valign="middle">
+	      <input type="hidden" name="id" value="${food.id}">
+	      <input type="submit" name="update"  value="更新">
+	    </td>
+	    <td align="center" valign="middle">
+		    <a href="javascript:history.go(-1)">
+				<input type="button" name="cancel" value="取消">
+			</a>
+		</td>
+	  </tr>
+	</table>
+</form>
 </body>
 </html>

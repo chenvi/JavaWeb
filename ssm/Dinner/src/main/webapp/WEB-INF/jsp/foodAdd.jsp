@@ -20,7 +20,7 @@ body, td, th {
 <body>
 	<p>添加菜品</p>
 	<form name="form1" method="post"
-	  onsubmit="return validate(this);"action="${pageContext.request.contextPath}/food/food?method=add">
+	  onsubmit="return validate(this);"action="${pageContext.request.contextPath}/food/add">
 	<table width="310" border="0">
 	
 		<tr>
@@ -67,7 +67,7 @@ body, td, th {
 			</td>
 	
 			<td align="center" valign="middle">
-				<a href="${pageContext.request.contextPath}/food/food?method=index">
+				<a href="javascript:history.go(-1)">
 					<input type="button" name="cancel" value="取消">
 				</a>
 			</td>

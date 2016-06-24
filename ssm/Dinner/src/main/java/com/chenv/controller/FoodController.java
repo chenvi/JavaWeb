@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chenv.pojo.Food;
-import com.chenv.pojo.FoodType;
 import com.chenv.service.FoodService;
 import com.chenv.service.FoodTypeService;
 
@@ -22,110 +21,107 @@ public class FoodController {
 	@Resource
 	private FoodTypeService foodTypeService;
 	
-	@RequestMapping("todo")
-	public String toDo(HttpServletRequest request,Model model){
-		//获取页面跳转
-		String toDoService = request.getParameter("service");
-		if(toDoService.equals("foodUpdate")){
+	@RequestMapping("to")
+	public String to(HttpServletRequest request,Model model){
+		
+		String page = request.getParameter("page");
+		
+		if("foodUpdate".equals(page)){
 			int id = Integer.parseInt(request.getParameter("id"));
 			model.addAttribute("food", this.foodService.findById(id));
-			return toDoService;
+			return page;
 		}
-		if(toDoService.equals("foodAdd")){
+		if("foodAdd".equals(page)){
 			model.addAttribute("foodType",this.foodTypeService.listAll());
 			return "foodAdd";
 		}
-		return toDoService;
+		return page;
 	}
 	
+
 	
-	@RequestMapping("food")
-	public String food(HttpServletRequest request, Model model){
+	@RequestMapping("list")
+	public String list(HttpServletRequest request, Model model){
+		List<Food> foodList = null;
+		foodList = this.foodService.listAll();
+		model.addAttribute("foods", foodList);
+		return "food";
+	}
+	
+	@RequestMapping("search")
+	public String search(HttpServletRequest request, Model model){
+		String serachName = (String) request.getParameter("foodname");
 		List<Food> foodList = null;
 		
-		//到菜系列表的页面
-		if(request.getParameter("method").equals("index")){
+		if(!serachName.isEmpty())
+			foodList =this.foodService.listAll(serachName);
+		else {
 			foodList = this.foodService.listAll();
-			model.addAttribute("foods", foodList);
-			// TODO 完成菜系显示
-			return "food";
 		}
+		model.addAttribute("foods", foodList);
+		return "food";
+	}
+	
+	@RequestMapping("update")
+	public String update(HttpServletRequest request, Model model){
+		Food food= new Food();
+		int id = Integer.parseInt(request.getParameter("id"));
+		String foodName = request.getParameter("foodName");
+		int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
+		double price = Double.parseDouble(request.getParameter("price"));
+		double mprice = Double.parseDouble(request.getParameter("mprice"));
+		String mark = request.getParameter("mark");
+		String img = request.getParameter("img");
 		
-		//处理搜索
-		if(request.getParameter("method").equals("search")){
-			String serachName = (String) request.getParameter("foodname");
+		food.setId(id);
+		food.setFoodName(foodName);
+		food.setFoodTypeId(foodTypeId);
+		food.setPrice(price);
+		food.setMprice(mprice);
+		food.setRemark(mark);
+		food.setImg(img);
+		
+		this.foodService.update(food);
+		List<Food> foodList =this.foodService.listAll();
+		
+		model.addAttribute("foods", foodList);
+		return "food";
+	}
 
-			if(!serachName.isEmpty())
-				foodList =this.foodService.listAll(serachName);
-			else {
-				foodList = this.foodService.listAll();
-			}
-			model.addAttribute("foods", foodList);
-			return "food";
-		}
+	@RequestMapping("delete")
+	public String delete(HttpServletRequest request, Model model){
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.foodService.delete(id);
 		
-		//处理更新
-		if (request.getParameter("update") != null) {
-			Food food= new Food();
-			int id = Integer.parseInt(request.getParameter("id"));
-			String foodName = request.getParameter("foodName");
-			int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
-			double price = Double.parseDouble(request.getParameter("price"));
-			double mprice = Double.parseDouble(request.getParameter("mprice"));
-			String mark = request.getParameter("mark");
-			String img = request.getParameter("img");
-			
-			food.setId(id);
-			food.setFoodName(foodName);
-			food.setFoodTypeId(foodTypeId);
-			food.setPrice(price);
-			food.setMprice(mprice);
-			food.setRemark(mark);
-			food.setImg(img);
-			
-			this.foodService.update(food);
-			foodList =this.foodService.listAll();
-			
-			model.addAttribute("foods", foodList);
-			return "food";
-		}
+		List<Food> foodList =this.foodService.listAll();
 		
-		//处理删除
-		if (request.getParameter("method").equals("delete")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			this.foodService.delete(id);
-			
-			foodList =this.foodService.listAll();
-			
-			model.addAttribute("foods", foodList);
-			return "food";
-		}
+		model.addAttribute("foods", foodList);
+		return "food";
+	}
+
+	@RequestMapping("add")
+	public String add(HttpServletRequest request, Model model){
+		String foodName = request.getParameter("foodname");
+		int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
+		double price = Double.parseDouble(request.getParameter("price"));
+		double mprice = Double.parseDouble(request.getParameter("mprice"));
+		String mark = request.getParameter("mark");
+		String img = request.getParameter("img");
 		
-		//添加
-		if (request.getParameter("method").equals("add")) {
-			String foodName = request.getParameter("foodname");
-			int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
-			double price = Double.parseDouble(request.getParameter("price"));
-			double mprice = Double.parseDouble(request.getParameter("mprice"));
-			String mark = request.getParameter("mark");
-			String img = request.getParameter("img");
-			
-			Food food = new Food();
-			food.setFoodName(foodName);
-			food.setFoodTypeId(foodTypeId);
-			food.setPrice(price);
-			food.setMprice(mprice);
-			food.setRemark(mark);
-			food.setImg(img);
-			
-			this.foodService.add(food);
-			
-			foodList = this.foodService.listAll();
-			
-			model.addAttribute("foods", foodList);
-			return "food";
-		}
-		return null;
+		Food food = new Food();
+		food.setFoodName(foodName);
+		food.setFoodTypeId(foodTypeId);
+		food.setPrice(price);
+		food.setMprice(mprice);
+		food.setRemark(mark);
+		food.setImg(img);
+		
+		this.foodService.add(food);
+		
+		List<Food> foodList = this.foodService.listAll();
+		
+		model.addAttribute("foods", foodList);
+		return "food";
 	}
 	
 }
