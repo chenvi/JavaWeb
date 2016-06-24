@@ -19,7 +19,7 @@ body,td,th {
 <p>更新菜系
 
 </p>
-<form name="form1" method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=update">
+<form name="form1" method="post" action="${pageContext.request.contextPath}/foodtype/update">
 	<table width="310" border="0">
 	  <tr>
 	    <td width="120">菜系名称</td>

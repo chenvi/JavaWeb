@@ -12,14 +12,14 @@ body,td,th {
 </head>
 
 <body>
-<p>&nbsp;</p>
+
 <table width="210" border="1" align="center" cellpadding="3" cellspacing="0">
   <tbody>
     <tr>
       <th scope="col"><a href="${pageContext.request.contextPath}/dinnertable/dinnertable?method=index">餐桌管理</a></th>
     </tr>
     <tr>
-      <th scope="col"><a href="${pageContext.request.contextPath}/foodtype/foodtype?method=index">菜系管理</a></th>
+      <th scope="col"><a href="${pageContext.request.contextPath}/foodtype/list">菜系管理</a></th>
     </tr>
     <tr>
       <th scope="col"><a href="${pageContext.request.contextPath}/food/list">菜品管理</a></th>

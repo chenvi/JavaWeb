@@ -38,8 +38,6 @@ public class FoodController {
 		return page;
 	}
 	
-
-	
 	@RequestMapping("list")
 	public String list(HttpServletRequest request, Model model){
 		List<Food> foodList = null;
@@ -47,17 +45,39 @@ public class FoodController {
 		model.addAttribute("foods", foodList);
 		return "food";
 	}
-	
-	@RequestMapping("search")
-	public String search(HttpServletRequest request, Model model){
-		String serachName = (String) request.getParameter("foodname");
-		List<Food> foodList = null;
+
+	@RequestMapping("add")
+	public String add(HttpServletRequest request, Model model){
+		String foodName = request.getParameter("foodname");
+		int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
+		double price = Double.parseDouble(request.getParameter("price"));
+		double mprice = Double.parseDouble(request.getParameter("mprice"));
+		String mark = request.getParameter("mark");
+		String img = request.getParameter("img");
 		
-		if(!serachName.isEmpty())
-			foodList =this.foodService.listAll(serachName);
-		else {
-			foodList = this.foodService.listAll();
-		}
+		Food food = new Food();
+		food.setFoodName(foodName);
+		food.setFoodTypeId(foodTypeId);
+		food.setPrice(price);
+		food.setMprice(mprice);
+		food.setRemark(mark);
+		food.setImg(img);
+		
+		this.foodService.add(food);
+		
+		List<Food> foodList = this.foodService.listAll();
+		
+		model.addAttribute("foods", foodList);
+		return "food";
+	}
+	
+	@RequestMapping("delete")
+	public String delete(HttpServletRequest request, Model model){
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.foodService.delete(id);
+		
+		List<Food> foodList =this.foodService.listAll();
+		
 		model.addAttribute("foods", foodList);
 		return "food";
 	}
@@ -88,38 +108,16 @@ public class FoodController {
 		return "food";
 	}
 
-	@RequestMapping("delete")
-	public String delete(HttpServletRequest request, Model model){
-		int id = Integer.parseInt(request.getParameter("id"));
-		this.foodService.delete(id);
+	@RequestMapping("search")
+	public String search(HttpServletRequest request, Model model){
+		String serachName = (String) request.getParameter("foodname");
+		List<Food> foodList = null;
 		
-		List<Food> foodList =this.foodService.listAll();
-		
-		model.addAttribute("foods", foodList);
-		return "food";
-	}
-
-	@RequestMapping("add")
-	public String add(HttpServletRequest request, Model model){
-		String foodName = request.getParameter("foodname");
-		int foodTypeId = Integer.parseInt(request.getParameter("foodTypeId"));
-		double price = Double.parseDouble(request.getParameter("price"));
-		double mprice = Double.parseDouble(request.getParameter("mprice"));
-		String mark = request.getParameter("mark");
-		String img = request.getParameter("img");
-		
-		Food food = new Food();
-		food.setFoodName(foodName);
-		food.setFoodTypeId(foodTypeId);
-		food.setPrice(price);
-		food.setMprice(mprice);
-		food.setRemark(mark);
-		food.setImg(img);
-		
-		this.foodService.add(food);
-		
-		List<Food> foodList = this.foodService.listAll();
-		
+		if(!serachName.isEmpty())
+			foodList =this.foodService.listAll(serachName);
+		else {
+			foodList = this.foodService.listAll();
+		}
 		model.addAttribute("foods", foodList);
 		return "food";
 	}

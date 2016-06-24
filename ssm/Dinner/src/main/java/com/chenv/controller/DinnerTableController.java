@@ -19,98 +19,93 @@ public class DinnerTableController {
 	@Resource
 	private DinnerTableService dinnerTableService;
 	
-	@RequestMapping("todo")
-	public String toDo(HttpServletRequest request){
+	@RequestMapping("to")
+	public String to(HttpServletRequest request){
 		//获取页面跳转
-		String toDoService = request.getParameter("service");
-		if(toDoService.equals("foodtypeUpdate")){
+		String page = request.getParameter("page");
+		if("foodtypeUpdate".equals(page)){
 			int id = Integer.parseInt(request.getParameter("id"));
 			request.setAttribute("foodtype", this.dinnerTableService.findById(id));
-			return toDoService;
+			return page;
 		} 
-		return toDoService;
+		return page;
 	}
 	
-	@RequestMapping("dinnertable")
-	public String dinnertable(HttpServletRequest request,Model model){
+	@RequestMapping("list")
+	public String list(HttpServletRequest request, Model model){
+		List<DinnerTable> dinnerTableList = this.dinnerTableService.listAll();
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
+	}
+	
+	@RequestMapping("add")
+	public String add(HttpServletRequest request, Model model){
+		String tableName = request.getParameter("tablename");
+		DinnerTable dinnerTable = new DinnerTable();
+		dinnerTable.setTableName(tableName);
+		dinnerTable.setTableStatus(0);
+		
+		this.dinnerTableService.add(dinnerTable);;
+		
+		List<DinnerTable> dinnerTableList = this.dinnerTableService.listAll();
+		
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
+	}
+	
+	@RequestMapping("delete")
+	public String delete(HttpServletRequest request, Model model){
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.dinnerTableService.delete(id);
+		
+		List<DinnerTable> dinnerTableList =this.dinnerTableService.listAll();
+		
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
+	}
+	
+	@RequestMapping("reserve")
+	public String reserve(HttpServletRequest request, Model model){
+		int id = Integer.parseInt(request.getParameter("id"));
 		List<DinnerTable> dinnerTableList = null;
 		
-		//到菜系列表的页面
-		if(request.getParameter("method").equals("index")){
+		if(id != 0){
+			this.dinnerTableService.reserve(id);
 			dinnerTableList = this.dinnerTableService.listAll();
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
-		}
-		
-		//处理搜索
-		if(request.getParameter("method").equals("search")){
-			String serachName = (String) request.getParameter("tableName");
-
-			if(!serachName.isEmpty())
-				dinnerTableList =this.dinnerTableService.listAll(serachName);
-			else {
-				dinnerTableList = this.dinnerTableService.listAll();
-			}
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
-		}
-		
-		//预定
-		if(request.getParameter("method").equals("reserve")){
-			int id = Integer.parseInt(request.getParameter("id"));
-
-			if(id != 0){
-				this.dinnerTableService.reserve(id);
-				dinnerTableList = this.dinnerTableService.listAll();
-			}				
-			else {
-				dinnerTableList = this.dinnerTableService.listAll();
-			}
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
-		}
-		
-		//处理更新
-		if (request.getParameter("method").equals("return")) {
-			DinnerTable dinnerTable = new DinnerTable();
-			int id = Integer.parseInt(request.getParameter("id"));
-			
-			dinnerTable.setId(id);
-			
-			this.dinnerTableService.returnTable(id);
-			
-			dinnerTableList =this.dinnerTableService.listAll();
-			
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
-		}
-		
-		//处理删除
-		if (request.getParameter("method").equals("delete")) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			this.dinnerTableService.delete(id);
-			
-			dinnerTableList =this.dinnerTableService.listAll();
-			
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
-		}
-		
-		//添加
-		if (request.getParameter("method").equals("add")) {
-			String tableName = request.getParameter("tablename");
-			DinnerTable dinnerTable = new DinnerTable();
-			dinnerTable.setTableName(tableName);
-			dinnerTable.setTableStatus(0);
-			
-			this.dinnerTableService.add(dinnerTable);;
-			
+		}				
+		else {
 			dinnerTableList = this.dinnerTableService.listAll();
-			
-			model.addAttribute("dinnertables", dinnerTableList);
-			return "dinnertable";
 		}
-		return null;
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
 	}
 	
+	@RequestMapping("clean")
+	public String clean(HttpServletRequest request, Model model){
+		DinnerTable dinnerTable = new DinnerTable();
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		dinnerTable.setId(id);
+		
+		this.dinnerTableService.returnTable(id);
+		
+		List<DinnerTable> dinnerTableList =this.dinnerTableService.listAll();
+		
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
+	}
+	
+	@RequestMapping("search")
+	public String search(HttpServletRequest request, Model model){
+		String serachName = (String) request.getParameter("tableName");
+		List<DinnerTable> dinnerTableList = null;
+		
+		if(!serachName.isEmpty())
+			dinnerTableList =this.dinnerTableService.listAll(serachName);
+		else {
+			dinnerTableList = this.dinnerTableService.listAll();
+		}
+		model.addAttribute("dinnertables", dinnerTableList);
+		return "dinnertable";
+	}
 }

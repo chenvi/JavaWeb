@@ -19,11 +19,11 @@ body,td,th {
 <table width="764" border="0">
   <tr>
     <th width="377" align="left" scope="col">餐桌列表</th>
-    <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/dinnertable/todo?service=index">系统菜单</a></th>
+    <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/dinnertable/to?page=index">系统菜单</a></th>
   </tr>
 </table>
 
-<form name="form1" method="post" action="./dinnertable?method=search">
+<form name="form1" method="post" action="${pageContext.request.contextPath}/dinnertable/search">
   <p>
   <input type="text" name="tableName" id="textfield">
   <input type="submit" name="search"  value="搜索">
@@ -51,22 +51,25 @@ body,td,th {
 	<td width="500" align="center">${dinnertable.orderDate}</td>
 	<td width="100" height="20" align="center">
 	<c:if test="${dinnertable.tableStatus == '0' }" >
-	  <form method="post" action="./dinnertable?method=reserve&id=${dinnertable.id}">
+	  <form method="post" action="${pageContext.request.contextPath}/dinnertable/reserve">
+	     <input type="hidden" name="id" value="${dinnertable.id}">
 	     <input type="submit" name="reserve" value="预定">
 	  </form>
 	</c:if>
 	<c:if test="${dinnertable.tableStatus == '1' }" >
-	  <form method="post" action="./dinnertable?method=return&id=${dinnertable.id}">
+	  <form method="post" action="${pageContext.request.contextPath}/dinnertable/clean">
+	     <input type="hidden" name="id" value="${dinnertable.id}">
 	     <input type="submit" name="return" value="退桌">
 	  </form>
 	</c:if>
-	  <form method="post" action="./dinnertable?method=delete&id=${dinnertable.id}">
+	  <form method="post" action="${pageContext.request.contextPath}/dinnertable/delete">
+	    <input type="hidden" name="id" value="${dinnertable.id}">
 	  	<input type="submit" name="delete"  value="删除">
 	  </form>
 	 </td>
 <tr>
 </c:forEach>
 </table>
-<a href="./todo?service=dinnertableAdd">添加</a>
+<a href="./to?page=dinnertableAdd">添加</a>
 </body>
 </html>

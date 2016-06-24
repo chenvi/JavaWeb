@@ -20,84 +20,76 @@ public class FoodTypeController {
 	@Resource
 	private FoodTypeService foodTypeService;
 	
-	@RequestMapping("todo")
-	public String toDo(HttpServletRequest request){
-		//获取页面跳转
-		String toDoService = request.getParameter("service");
-		if(toDoService.equals("foodtypeUpdate")){
+	@RequestMapping("to")
+	public String to(HttpServletRequest request){
+		
+		String page = request.getParameter("page");
+		if("foodtypeUpdate".equals(page)){
 			int id = Integer.parseInt(request.getParameter("id"));
 			request.setAttribute("foodtype", this.foodTypeService.findById(id));
-			return toDoService;
+			return page;
 		} 
-		return toDoService;
+		return page;
+	}		
+	
+	@RequestMapping("list")
+	public String list(HttpServletRequest request, Model model){
+		List<FoodType> foodTypeList = this.foodTypeService.listAll();
+		model.addAttribute("foodtypes", foodTypeList);
+		return "foodtype";
 	}
 	
-	@RequestMapping("foodtype")
-	public String foodtype(HttpServletRequest request, Model model){
+	@RequestMapping("add")
+	public String add(HttpServletRequest request, Model model){
+		String foodTypeName = request.getParameter("foodtypename");
+		FoodType foodType = new FoodType();
+		foodType.setTypeName(foodTypeName);
+		
+		this.foodTypeService.add(foodType);
+		
+		List<FoodType> foodTypeList = this.foodTypeService.listAll();
+		
+		model.addAttribute("foodtypes", foodTypeList);
+		return "foodtype";
+	}
+	
+	@RequestMapping("delete")
+	public String delete(HttpServletRequest request, Model model){
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.foodTypeService.delete(id);
+		
+		List<FoodType> foodTypeList =this.foodTypeService.listAll();
+		
+		model.addAttribute("foodtypes", foodTypeList);
+		return "foodtype";
+	}
+	
+	@RequestMapping("update")
+	public String update(HttpServletRequest request, Model model){
+		FoodType foodType = new FoodType();
+		int id = Integer.parseInt(request.getParameter("id"));
+		String foodtype = request.getParameter("foodtypename");
+		
+		foodType.setId(id);
+		foodType.setTypeName(foodtype);
+		
+		this.foodTypeService.update(foodType);
+		List<FoodType> foodTypeList =this.foodTypeService.listAll();
+		
+		model.addAttribute("foodtypes", foodTypeList);
+		return "foodtype";
+	}
+	
+	@RequestMapping("search")
+	public String search(HttpServletRequest request, Model model){
+		String serachName = (String) request.getParameter("foodtypename");
 		List<FoodType> foodTypeList = null;
-		String method = request.getParameter("method");
-		
-		//到菜系列表的页面
-		if("index".equals(method)){
+		if(!serachName.isEmpty())
+			foodTypeList =this.foodTypeService.listAll(serachName);
+		else {
 			foodTypeList = this.foodTypeService.listAll();
-			model.addAttribute("foodtypes", foodTypeList);
-			return "foodtype";
 		}
-		
-		//处理搜索
-		if("search".equals(method)){
-			String serachName = (String) request.getParameter("foodtypename");
-
-			if(!serachName.isEmpty())
-				foodTypeList =this.foodTypeService.listAll(serachName);
-			else {
-				foodTypeList = this.foodTypeService.listAll();
-			}
-			model.addAttribute("foodtypes", foodTypeList);
-			return "foodtype";
-		}
-		
-		//处理更新
-		if ("update".equals(method)) {
-			FoodType foodType = new FoodType();
-			int id = Integer.parseInt(request.getParameter("id"));
-			String foodtype = request.getParameter("foodtypename");
-			
-			foodType.setId(id);
-			foodType.setTypeName(foodtype);
-			
-			this.foodTypeService.update(foodType);
-			foodTypeList =this.foodTypeService.listAll();
-			
-			model.addAttribute("foodtypes", foodTypeList);
-			return "foodtype";
-		}
-		
-		//处理删除
-		if ("delete".equals(method)) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			this.foodTypeService.delete(id);
-			
-			foodTypeList =this.foodTypeService.listAll();
-			
-			model.addAttribute("foodtypes", foodTypeList);
-			return "foodtype";
-		}
-		
-		//添加
-		if ("add".equals(method)) {
-			String foodTypeName = request.getParameter("foodtypename");
-			FoodType foodType = new FoodType();
-			foodType.setTypeName(foodTypeName);
-			
-			this.foodTypeService.add(foodType);
-			
-			foodTypeList = this.foodTypeService.listAll();
-			
-			model.addAttribute("foodtypes", foodTypeList);
-			return "foodtype";
-		}
-		return null;
+		model.addAttribute("foodtypes", foodTypeList);
+		return "foodtype";
 	}
-	
 }

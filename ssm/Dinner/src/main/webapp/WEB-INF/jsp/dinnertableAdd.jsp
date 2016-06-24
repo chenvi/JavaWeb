@@ -16,24 +16,28 @@ body,td,th {
 <h3>
 添加餐桌
 </h3>
-<p>
+
+<form name="form1" method="post" action="${pageContext.request.contextPath}/dinnertable/add">
 <table width="310" border="0">
   <tr>
-    <td colspan="2" align="center" width="200">    
-    <form name="form1" method="post" action="${pageContext.request.contextPath}/dinnertable/dinnertable?method=add">
+    <td colspan="2" align="center" width="200">        
     	餐桌名称
-    <input type="text" name="tablename" value=""></td>
+    	<input type="text" name="tablename" value="">
+    </td>
   </tr>
   <tr height="10"></tr>
   <tr>
     <td align="center" valign="middle">
       <input type="submit" name="add"  value="添加">
-    </form></td>
-    <td align="center" valign="middle"><form method="post" action="${pageContext.request.contextPath}/foodtype/foodtype?method=index">
-      <input type="submit" name="cancel"  value="取消">
-    </form></td>
+    </td>
+    <td align="center" valign="middle">
+      <a href="javascript:history.go(-1)">
+     	 <input type="button" name="cancel"  value="取消">
+      </a>
+    </td>
   </tr>
 </table>
-</p>
+</form>
+
 </body>
 </html>
