@@ -4,10 +4,8 @@
 <html>
   <head>
     <title>主页</title>
-   <%--   <jsp:forward page="/WEB-INF/jsp/index.jsp"></jsp:forward> --%>
-     
+      <jsp:forward page="/WEB-INF/jsp/index.jsp"></jsp:forward>
 <body>
-  <a href="hotel.jsp">酒店登录</a>
-  <a href="account.jsp">客户登录</a>
+!
 </body>
 </html>

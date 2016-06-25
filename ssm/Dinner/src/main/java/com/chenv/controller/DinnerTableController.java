@@ -94,7 +94,7 @@ public class DinnerTableController {
 		DinnerTable dinnerTable = new DinnerTable();
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		dinnerTable.setId(id);
+		//dinnerTable.setId(id);
 		
 		this.dinnerTableService.returnTable(id);
 		

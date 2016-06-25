@@ -20,6 +20,8 @@ public interface OrdersMapper {
 
     Orders selectByPrimaryKey(Integer id);
 
+    Orders selectByTableId(Integer id);
+    
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);

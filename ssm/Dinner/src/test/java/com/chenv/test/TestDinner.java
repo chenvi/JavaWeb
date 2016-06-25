@@ -162,5 +162,8 @@ public class TestDinner {
 		this.ordersService.add(orders);
 		
 		this.ordersService.listAll();
+		
+		this.ordersService.findByTableId(15);
+		
 	}
 }

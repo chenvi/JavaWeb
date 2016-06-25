@@ -7,6 +7,8 @@ import com.chenv.pojo.OrderDetail;
 public interface OrderDetailMapper {
     int deleteByPrimaryKey(Integer id);
     
+    int deleteByOrderId(OrderDetail record);
+    
     int deleteAll();
     
     List<OrderDetail> listAll();

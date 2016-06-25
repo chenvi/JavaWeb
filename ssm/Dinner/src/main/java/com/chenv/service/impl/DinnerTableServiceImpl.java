@@ -35,7 +35,7 @@ public class DinnerTableServiceImpl implements DinnerTableService {
 
 	@Override
 	public void update(DinnerTable dinnerTable) {
-		// TODO Auto-generated method stub
+		this.dinnerTableMapper.updateById(dinnerTable);
 
 	}
 

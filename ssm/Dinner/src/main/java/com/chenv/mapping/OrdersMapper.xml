@@ -17,6 +17,14 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
+  
+  <select id="selectByTableId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where table_id = #{tableId,jdbcType=INTEGER}
+  </select>
+  
    <select id="listAll" resultMap="BaseResultMap">
   	select * from orders
   </select>
