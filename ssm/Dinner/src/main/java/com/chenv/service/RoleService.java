@@ -8,6 +8,7 @@ public interface RoleService {
 
 	Role login(HttpServletRequest request);
 		
-	boolean changePwd(String pwd, String newPwd);
+	boolean changePwd(int pwd, int newPwd);
 	
+	boolean checkPwd(int pwd);
 }

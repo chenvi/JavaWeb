@@ -17,10 +17,18 @@ public class RoleServiceImpl implements RoleService {
 	@Resource
 	private RoleMapper roleMapper;
 
+	//保存登录信息
+	private Role aAccount = new Role();
+	
 	@Override
-	public boolean changePwd(String pwd, String newPwd) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean changePwd(int pwd, int newPwd) {
+		if (checkPwd(pwd)) {			
+			aAccount.setPassword(newPwd);
+			this.roleMapper.updateByPrimaryKeySelective(aAccount);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -33,14 +41,22 @@ public class RoleServiceImpl implements RoleService {
 		 loginAccount.setPassword(password);
 		    
 		 loginAccount = this.roleMapper.findAccount(loginAccount);
-		 
-		 
-		 
+		 		 		 
 		 if (loginAccount!=null) {
+			 aAccount = loginAccount;
 		    	 return loginAccount;
 			} else {
 				return null;
 			}
+	}
+
+	@Override
+	public boolean checkPwd(int pwd) {
+		if (aAccount.getPassword().equals(pwd)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

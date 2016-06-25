@@ -23,6 +23,7 @@ import com.chenv.pojo.Food;
 import com.chenv.pojo.FoodType;
 import com.chenv.pojo.OrderDetail;
 import com.chenv.pojo.Orders;
+import com.chenv.pojo.TableandTotal;
 import com.chenv.service.DinnerTableService;
 import com.chenv.service.FoodService;
 import com.chenv.service.FoodTypeService;
@@ -56,7 +57,24 @@ public class OrderController {
 	@RequestMapping("list")
 	public String list(HttpServletRequest request, Model model){
 		List<Orders> ordersList = this.ordersService.listAll();
-		model.addAttribute("orders", ordersList);
+		Map<Orders, Double> map = new LinkedHashMap<Orders, Double>();
+		
+		Iterator<Orders> iterator = ordersList.iterator();
+		while (iterator.hasNext()) {
+			Orders orders = (Orders) iterator.next();
+			// TODO
+//			String[] strings = new String[2];
+//			strings[0] = this.dinnerTableService.findById(orders.getTableId()).getTableName();
+//			
+//			strings[1] = this.ordersService.total(orders);
+			
+			map.put(orders, this.ordersService.total(orders));
+		}
+		
+		List<DinnerTable> dinnerTables = this.dinnerTableService.listAll();
+		
+		model.addAttribute("table", dinnerTables);
+		model.addAttribute("map", map);
 		return "orders";
 	}
 	

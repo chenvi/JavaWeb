@@ -18,6 +18,13 @@ public class RoleController {
 	@Resource
 	private RoleService roleService;
 	
+	@RequestMapping("to")
+	public String to(HttpServletRequest request){
+		//获取页面跳转
+		String page = request.getParameter("page");
+		return page;
+	}
+	
 	@RequestMapping("login")
 	public String login(HttpServletRequest request, Model model){
 		 //从request获取session
@@ -34,5 +41,25 @@ public class RoleController {
 			model.addAttribute("msg","密码或用户名错误");
 			return "error";
 		}
+	}
+	
+	@RequestMapping("/changePwd")
+	 public String changePwd(HttpServletRequest request,Model model){		  			  
+			  int pwd = Integer.parseInt(request.getParameter("pwd"));
+			  int newPwd1 = Integer.parseInt(request.getParameter("newPwd1"));
+			  int newPwd2 = Integer.parseInt(request.getParameter("newPwd2"));
+			  if (newPwd1==newPwd2) {
+				  if (this.roleService.changePwd(pwd,newPwd1)) {
+					  model.addAttribute("msg", "修改密码成功！！！");
+					  return "success";
+				} else {
+					model.addAttribute("msg", "原密码错误，请重新输入");
+					return "error";
+				}
+			} else {
+				model.addAttribute("msg", "新密码输入不一致，请重新输入");
+				return "error";
+				}
+
 	}
 }

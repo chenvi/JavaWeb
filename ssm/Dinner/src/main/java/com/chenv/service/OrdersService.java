@@ -24,4 +24,6 @@ public interface OrdersService {
 	Orders findById(int id);
 	
 	Orders findByTableId(int tableId);
+	
+	double total(Orders orders);
 }

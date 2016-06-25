@@ -21,6 +21,8 @@ body,td,th {
 	欢迎用户<font color="red">${sessionScope.loginAccount.userName}  </font><a href="${pageContext.request.contextPath}">退出</a> 	
 </div>
 
+
+
 <h1 align="center">酒店后台点菜管理系统</h1>
 <table width="210" border="1" align="center" cellpadding="3" cellspacing="0">
   <tbody>
@@ -36,6 +38,9 @@ body,td,th {
     <tr> 
 	<th scope="col" width="200"><a style="text-decoration: none" href="${pageContext.request.contextPath}/order/list">餐厅订单</a></th> 
 	</tr>
+	<tr> 
+	<th scope="col" width="200"><a style="text-decoration: none" href="${pageContext.request.contextPath}/role/to?page=changePwd">修改密码</a></th> 
+	</tr>	
   </tbody>
 </table>
 

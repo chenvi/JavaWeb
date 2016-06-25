@@ -7,13 +7,16 @@
    <%--   <jsp:forward page="/WEB-INF/jsp/index.jsp"></jsp:forward> --%>
      
 <body>
-<br>
-<br>
+
 <h1 align="center">
- <a href="login.jsp">酒店登录</a>
-<br>
-  <a href="account.jsp">客户登录</a>
+无线点餐平台
 </h1>
+
+<h2 align="center">
+ <a href="login.jsp">酒店登录</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="account.jsp">客户登录</a>
+</h2>
   
 </body>
 </html>

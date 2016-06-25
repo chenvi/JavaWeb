@@ -30,26 +30,29 @@ body,td,th {
     <tr>
       <td width="215" align="center">订单编号 </td>
       <td width="215" align="center">餐桌名</td>
-      <td width="215" align="center">下单日期</td>
+      <td width="500" align="center">下单日期</td>
       <td width="215" align="center">总金额</td>
-      <td width="215" align="center">状态</td>
       <td width="215" align="center">操作</td>
     </tr>
-<c:forEach items="${orders}" var="orders">
+<c:forEach items="${map}" var="map">
 	<tr>
-	  <td width="215" height="20" align="center">${orders.id}</td>
-	  <td width="215" align="center">${orders.tableId}</td>
-	  <td width="215" align="center">${orders.orderDate}</td>
-	  <td width="215" align="center">${orders.orderDate}</td>
-	  <td width="215" align="center">${orders.tableStatus}</td>
+	  <td width="215" height="20" align="center">${map.key.id}</td>
+	  <td width="215" align="center">
+	  <c:forEach items="${table}" var="table">
+	  	<c:if test="${map.key.tableId == table.id}">${table.tableName }</c:if>
+	  </c:forEach>
+	  </td>
+	  <td width="215" align="center">${map.key.orderDate}</td>
+	  <td width="215" align="center">${map.value}</td>
+	  
 	  <td width="215" height="20" align="center">
 	  <form method="post" action="${pageContext.request.contextPath}/order/detail">
-	  <input type="hidden" name="orderId" value="${orders.id}">
+	  <input type="hidden" name="orderId" value="${map.key.id}">
       <input type="submit" name="detail" value="详情">
 	  </form>	  
       <form method="post" action="${pageContext.request.contextPath}/order/check">
-      <input type="hidden" name="tableId" value="${orders.tableId}">
-      <input type="hidden" name="id" value="${orders.id}">
+      <input type="hidden" name="tableId" value="${map.key.tableId}">
+      <input type="hidden" name="id" value="${map.key.id}">
 	  <input type="submit" name="check"  value="结账">
 	  </form>
 	  </td>
