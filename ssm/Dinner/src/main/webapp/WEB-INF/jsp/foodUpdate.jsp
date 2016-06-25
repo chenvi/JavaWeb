@@ -19,7 +19,8 @@ body,td,th {
 <p>更新菜品
 
 </p>
-<form name="form1" method="post" action="${pageContext.request.contextPath}/food/update">
+<form name="form1" method="post" onsubmit="return validate(this);"
+	action="${pageContext.request.contextPath}/food/update">
 	<table width="310" border="0">
 	  <tr>
 	    <td width="120">菜名</td>
@@ -33,8 +34,8 @@ body,td,th {
 			<select name="foodTypeId" id="select">
 					<option value="">-请选择菜系-</option>
 					<c:forEach items="${foodType }" var="foodType">
-					<!--  <option <c:if test="${models.clientType}==0">selected</c:if> value="0">-->
-					<option value="${foodType.id }">	
+					<!-- 注意回显的处理 -->
+					<option <c:if test="${food.foodTypeId == foodType.id }">selected</c:if> value="${foodType.id }">	
 						${ foodType.typeName}
 					</option>
 					</c:forEach>
@@ -70,5 +71,32 @@ body,td,th {
 	  </tr>
 	</table>
 </form>
+<script type="text/javascript">
+		function validate(form1)
+		{
+			if(form1.foodTypeId.value=="")
+			{
+				alert("菜系不能为空");
+				return false;
+			}
+			else if(form1.price.value=="")
+			{
+				alert("价格不能为空");
+				return false;
+			}
+			else if(form1.mprice.value=="")
+			{
+				alert("会员价不能为空");
+				return false;
+			}
+			return true;
+		} 
+		
+		function isNumber(str)          // 判断是否为非负整数
+		{
+			var rx = /^[0-9]+$/;
+			return rx.test(str);
+		}					
+ </script>
 </body>
 </html>

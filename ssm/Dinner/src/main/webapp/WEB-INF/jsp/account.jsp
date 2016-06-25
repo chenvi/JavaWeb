@@ -8,16 +8,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+body,td,th {
+	font-size: 18px;
+}
+</style>
 </head>
 <body>
 
-<p>菜单</p>
+<table border="0">
+	<tr>
+		<th>菜单</th>
+	</tr>
+</table>
+
+<h5>餐桌选择：</h5>
 <form method="post" action="${pageContext.request.contextPath}/order/bill">
 	<c:choose>
 		<c:when test="${not empty dinnerTables }">
 			<table border="1" cellpadding="5" cellspacing="0">
 				<tr>
-					<td>餐桌编号</td>
+					<!-- <td>餐桌编号</td> -->
 					<td>餐桌名</td>
 					<td>状态</td>
 					
@@ -25,7 +36,7 @@
 				</tr>
 				<c:forEach items="${dinnerTables}" var="dinnerTables">
 					<tr>
-						<td>${dinnerTables.id }</td>
+						<%-- <td>${dinnerTables.id }</td> --%>
 						<td>${dinnerTables.tableName }</td>
 						<td> 
 						<c:if test="${dinnerTables.tableStatus == '1' }" >
@@ -50,14 +61,13 @@
 			<a href="${pageContext.request.contextPath}/order/dinner">刷新</a>
 		</c:otherwise>
 	</c:choose>
-	
-	<br/>
-	<br/>
+
+<h5>菜单选择：</h5>
 	<c:choose>
 		<c:when test="${not empty foods }">
 			<table border="1" cellpadding="5" cellspacing="0">
 				<tr>
-					<td>菜编号</td>
+				<!-- 	<td>菜编号</td> -->
 					<td>菜名</td>
 					<td>价格</td>
 					<td>会员价</td>
@@ -66,7 +76,7 @@
 				</tr>
 				<c:forEach items="${foods}" var="foods">
 					<tr>
-						<td>${foods.id }</td>
+						<%-- <td>${foods.id }</td> --%>
 						<td>${foods.foodName }</td>
 						<td>${foods.price }</td>
 						<td>${foods.mprice }</td>
@@ -75,12 +85,13 @@
 					</tr>
 				</c:forEach>
 			</table>
+		<input type="submit" value="提交">	
 		</c:when>
-		<c:otherwise>
+		<%-- <c:otherwise>
 			<a href="${pageContext.request.contextPath}/order/dinner">刷新</a>
-		</c:otherwise>
+		</c:otherwise> --%>
 	</c:choose>
-	<input type="submit" value="提交">
+	
 </form>	
 </body>
 </html>

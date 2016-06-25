@@ -1,7 +1,7 @@
 package com.chenv.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -157,10 +157,12 @@ public class OrderController {
 			bills.add(bill);
 		}
 		
+		Date orderDate = this.ordersService.findById(id).getOrderDate();
 		this.orderDetailService.deleteOrderId(id);
 		this.ordersService.delete(id);
 		this.dinnerTableService.returnTable(tableId);
 		
+		model.addAttribute("orderDate",orderDate);
 		model.addAttribute("bills",bills);
 		model.addAttribute("msg","结账成功！");
 		return "bills";		

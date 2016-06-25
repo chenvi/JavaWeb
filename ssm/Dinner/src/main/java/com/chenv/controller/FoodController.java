@@ -1,6 +1,5 @@
 package com.chenv.controller;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -85,10 +84,8 @@ public class FoodController {
 				
 				this.foodService.add(food);
 				
-				List<Food> foodList = this.foodService.listAll();
-				
-				model.addAttribute("foods", foodList);
-				return "food";
+				return "foodtmp";
+				 
 		}
 		
 		
@@ -99,10 +96,7 @@ public class FoodController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		this.foodService.delete(id);
 		
-		List<Food> foodList =this.foodService.listAll();
-		
-		model.addAttribute("foods", foodList);
-		return "food";
+		return "foodtmp";
 	}
 	
 	@RequestMapping("update")
@@ -126,9 +120,7 @@ public class FoodController {
 		
 		this.foodService.update(food);
 		
-		list(request, model);
-		
-		return "food";
+		return "foodtmp";
 	}
 
 	@RequestMapping("search")

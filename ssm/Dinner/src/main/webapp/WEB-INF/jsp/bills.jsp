@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
@@ -15,8 +15,21 @@
 	
 <table width="764" border="0">
   <tr>
-    <th width="377" align="left" scope="col">订单详情</th>
+    <th width="377" align="left" scope="col">账单详情</th>
   </tr>
+  <tr>
+  
+  
+  <tr>
+  <td>
+  	下单时间：<fmt:formatDate value="${orderDate }" type="both" dateStyle="full" />
+  </td>
+  <tr>
+  
+  <td>
+  	结账时间：<fmt:formatDate value="<%=new Date()%>" type="both" dateStyle="full" />
+  </td>
+  <tr>
 </table>
 
 
