@@ -22,6 +22,7 @@ import com.chenv.service.FoodService;
 import com.chenv.service.FoodTypeService;
 import com.chenv.service.OrderDetailService;
 import com.chenv.service.OrdersService;
+import com.chenv.service.RoleService;
 import com.mysql.fabric.xmlrpc.base.Data;
 
 @RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
@@ -42,6 +43,11 @@ public class TestDinner {
 	private OrderDetailService orderDetailService;
 	@Autowired
 	private OrdersService ordersService;
+	@Autowired
+	private RoleService roleService;
+	
+	
+
 	
 	@Test
 	public void testFood(){
@@ -148,7 +154,7 @@ public class TestDinner {
 //			System.out.println(food1.getFoodName());
 //			
 //		}
-		this.foodService.listAll("玉带虾仁");
+//		this.foodService.listAll("玉带虾仁");
 	}
 	
 	@Test
@@ -167,4 +173,6 @@ public class TestDinner {
 		this.ordersService.findByTableId(15);
 		
 	}
+	
+	
 }

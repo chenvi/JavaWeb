@@ -10,8 +10,17 @@ body,td,th {
 }
 </style>
 </head>
-
 <body>
+
+<!-- 禁止页面返回 --> 
+<script language="JavaScript"> 
+  javascript:window.history.forward(1);  
+</script> 
+
+<div align="right">  
+	欢迎用户<font color="red">${sessionScope.loginAccount.userName}  </font><a href="${pageContext.request.contextPath}">退出</a> 	
+</div>
+
 <h1 align="center">酒店后台点菜管理系统</h1>
 <table width="210" border="1" align="center" cellpadding="3" cellspacing="0">
   <tbody>
@@ -31,6 +40,6 @@ body,td,th {
 </table>
 
 <br>
-<h5 align="right"><a href="${pageContext.request.contextPath}">返回主页面</a></h5>
+
 </body>
 </html>
