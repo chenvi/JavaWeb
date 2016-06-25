@@ -15,6 +15,7 @@ body,td,th {
 </style>
 </head>
 <body>
+<h5 align="right"><a href="${pageContext.request.contextPath}">返回主页面</a></h5>
 
 <table border="0">
 	<tr>
@@ -22,10 +23,12 @@ body,td,th {
 	</tr>
 </table>
 
-<h5>餐桌选择：</h5>
+
+
 <form method="post" action="${pageContext.request.contextPath}/order/bill">
 	<c:choose>
 		<c:when test="${not empty dinnerTables }">
+		<h5>餐桌选择：</h5>
 			<table border="1" cellpadding="5" cellspacing="0">
 				<tr>
 					<!-- <td>餐桌编号</td> -->
@@ -57,14 +60,15 @@ body,td,th {
 			</table>
 		</c:when>
 		<c:otherwise>
-			<h3>暂时没有多余的餐桌供你选择！！！</h3>
+			<h5><font color="red">暂时没有多余的餐桌供你选择！！<br>请等待刷新！！
+			</font></h5>
 			<a href="${pageContext.request.contextPath}/order/dinner">刷新</a>
 		</c:otherwise>
 	</c:choose>
 
-<h5>菜单选择：</h5>
 	<c:choose>
 		<c:when test="${not empty foods }">
+		<h5>菜单选择：</h5>
 			<table border="1" cellpadding="5" cellspacing="0">
 				<tr>
 				<!-- 	<td>菜编号</td> -->
@@ -84,14 +88,17 @@ body,td,th {
 						<td><input type="checkbox" value="${foods.id }" name="foodId${foods.id }"></td>
 					</tr>
 				</c:forEach>
+				<tr>
+				<td colspan="5" align="right"><input type="submit" value="提交"></td>
+				</tr>
 			</table>
-		<input type="submit" value="提交">	
+			
 		</c:when>
 		<%-- <c:otherwise>
 			<a href="${pageContext.request.contextPath}/order/dinner">刷新</a>
 		</c:otherwise> --%>
-	</c:choose>
-	
+	</c:choose>	
 </form>	
+
 </body>
 </html>

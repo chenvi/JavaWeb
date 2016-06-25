@@ -134,6 +134,15 @@ public class FoodController {
 			foodList = this.foodService.listAll();
 		}
 		model.addAttribute("foods", foodList);
+		
+		Map<Food, String> map = new LinkedHashMap<Food, String>();		
+		Iterator<Food> iterator = foodList.iterator();
+		while (iterator.hasNext()) {
+			Food food = (Food) iterator.next();
+			map.put(food, this.foodTypeService.findById(food.getFoodTypeId()).getTypeName());
+		}
+		
+		model.addAttribute("map", map);
 		return "food";
 	}
 	

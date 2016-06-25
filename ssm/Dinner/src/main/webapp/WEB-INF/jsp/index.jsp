@@ -16,18 +16,21 @@ body,td,th {
 <table width="210" border="1" align="center" cellpadding="3" cellspacing="0">
   <tbody>
     <tr>
-      <th scope="col"><a href="${pageContext.request.contextPath}/dinnertable/list">餐桌管理</a></th>
+      <th scope="col"><a  style="text-decoration: none" href="${pageContext.request.contextPath}/dinnertable/list">餐桌管理</a></th>
     </tr>
     <tr>
-      <th scope="col"><a href="${pageContext.request.contextPath}/foodtype/list">菜系管理</a></th>
+      <th scope="col"><a style="text-decoration: none" href="${pageContext.request.contextPath}/foodtype/list">菜系管理</a></th>
     </tr>
     <tr>
-      <th scope="col"><a href="${pageContext.request.contextPath}/food/list">菜品管理</a></th>
+      <th scope="col"><a style="text-decoration: none" href="${pageContext.request.contextPath}/food/list">菜品管理</a></th>
     </tr>
     <tr> 
-	<th scope="col" width="200"><a href="${pageContext.request.contextPath}/order/list">餐厅订单</a></th> 
+	<th scope="col" width="200"><a style="text-decoration: none" href="${pageContext.request.contextPath}/order/list">餐厅订单</a></th> 
 	</tr>
   </tbody>
 </table>
+
+<br>
+<h5 align="right"><a href="${pageContext.request.contextPath}">返回主页面</a></h5>
 </body>
 </html>

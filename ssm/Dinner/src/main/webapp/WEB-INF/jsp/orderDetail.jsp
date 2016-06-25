@@ -37,7 +37,7 @@ body,td,th {
 	</tr>
 </c:forEach>
 </table>
-<a href="javascript:history.go(-1)">
+<a style="text-decoration: none" href="javascript:history.go(-1)">
 	<input type="button" name="cancel" value="返回">
 </a>
 </body>

@@ -24,8 +24,9 @@
   	select * from food
   </select>
   
-  <select id="listAllByTypeName" resultMap="BaseResultMap" parameterType="com.chenv.pojo.FoodType">
-  	select * from food where food_name = #{foodName,jdbcType=VARCHAR}
+  <select id="listAllByTypeName" resultMap="BaseResultMap" parameterType="com.chenv.pojo.Food">
+  	select * from food 
+  	where food_name = #{foodName,jdbcType=VARCHAR}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

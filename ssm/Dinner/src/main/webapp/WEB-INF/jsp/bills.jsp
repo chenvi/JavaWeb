@@ -53,7 +53,7 @@
 
 <tr><td colspan="4" align="right">总计：<c:out value="${sum }"></c:out> </td></tr>
 </table>
-<a href="${pageContext.request.contextPath}/order/list">
+<a style="text-decoration: none" href="${pageContext.request.contextPath}/order/list">
 	<input type="button" name="cancel" value="返回">
 </a>
 

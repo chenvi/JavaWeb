@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Error page</title>
+<title>Insert title here</title>
 </head>
-<body>
-	<h3><font color="red">${msg }</font></h3>
-	<br>
-	<a style="text-decoration: none" href="javascript:history.go(-1)">
-			<input type="button" name="cancel" value="取消">
-	</a>
+<body onload="getData()">
+<script language="javascript">
+function getData() {
+window.location.href = "${pageContext.request.contextPath}/food/list";
+}
+</script>
+ <BODY >
 </body>
 </html>

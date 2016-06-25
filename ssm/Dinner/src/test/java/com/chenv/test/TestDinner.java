@@ -133,21 +133,22 @@ public class TestDinner {
 	
 	@Test
 	public void testFoodService(){
-		this.foodService.deleteAll();
-		Food food = new Food();
-		food.setFoodName("西红柿炒蛋");
-		food.setMprice(12.0);
-		food.setPrice(15.0);
-		
-		this.foodService.add(food);
-		
-		List<Food> foods = this.foodService.listAll();
-		Iterator iterator = foods.iterator();
-		while (iterator.hasNext()) {
-			Food food1 = (Food) iterator.next();
-			System.out.println(food1.getFoodName());
-			
-		}
+//		this.foodService.deleteAll();
+//		Food food = new Food();
+//		food.setFoodName("西红柿炒蛋");
+//		food.setMprice(12.0);
+//		food.setPrice(15.0);
+//		
+//		this.foodService.add(food);
+//		
+//		List<Food> foods = this.foodService.listAll();
+//		Iterator iterator = foods.iterator();
+//		while (iterator.hasNext()) {
+//			Food food1 = (Food) iterator.next();
+//			System.out.println(food1.getFoodName());
+//			
+//		}
+		this.foodService.listAll("玉带虾仁");
 	}
 	
 	@Test

@@ -19,7 +19,9 @@ body,td,th {
 <table width="764" border="0">
   <tr>
     <th width="377" align="left" scope="col">餐桌列表</th>
-    <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/dinnertable/to?page=index">系统菜单</a></th>
+    <th width="377" align="right" scope="col">
+    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/dinnertable/to?page=index">系统菜单</a>
+    </th>
   </tr>
 </table>
 
@@ -70,6 +72,8 @@ body,td,th {
 <tr>
 </c:forEach>
 </table>
-<a href="./to?page=dinnertableAdd">添加</a>
+<a style="text-decoration: none" href="${pageContext.request.contextPath}/dinnertable/to?page=dinnertableAdd">
+	<input type="button" value="添加">
+</a>
 </body>
 </html>

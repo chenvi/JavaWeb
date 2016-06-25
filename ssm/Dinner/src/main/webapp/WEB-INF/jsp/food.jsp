@@ -20,16 +20,14 @@ body,td,th {
   <tr>
     <th width="377" align="left" scope="col">菜品列表</th>
     <th width="377" align="right" scope="col">
-    	<a href="${pageContext.request.contextPath}/food/to?page=index">系统菜单</a>
+    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/food/to?page=index">系统菜单</a>
     </th>
   </tr>
 </table>
 <p>&nbsp; </p>
 <form name="form1" method="post" action="${pageContext.request.contextPath}/food/search">
-  <p>
   <input type="text" name="foodname" id="textfield">
   <input type="submit" name="search"  value="搜索">
-</p>
 </form>
 
   <table width="752" border="1" cellpadding="5" cellspacing="0">
@@ -62,6 +60,6 @@ body,td,th {
 	</tr>
 </c:forEach>
 </table>
-<a href="${pageContext.request.contextPath}/food/to?page=foodAdd">添加</a>
+<a style="text-decoration: none" href="${pageContext.request.contextPath}/food/to?page=foodAdd"><input type="button"  value="添加"></a>
 </body>
 </html>

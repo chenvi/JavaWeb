@@ -34,7 +34,7 @@ body,td,th {
       <input type="submit" name="add"  value="添加">
     </td>
     <td align="center" valign="middle">
-      <a href="javascript:history.go(-1)">
+      <a style="text-decoration: none" href="javascript:history.go(-1)">
       	<input type="button" name="cancel"  value="取消">
       </a>
     </td>

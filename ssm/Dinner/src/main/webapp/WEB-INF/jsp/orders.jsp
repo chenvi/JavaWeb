@@ -19,7 +19,9 @@ body,td,th {
 <table width="764" border="0">
   <tr>
     <th width="377" align="left" scope="col">订单列表</th>
-    <th width="377" align="right" scope="col"><a href="${pageContext.request.contextPath}/order/to?page=index">系统菜单</a></th>
+    <th width="377" align="right" scope="col">
+    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/order/to?page=index">系统菜单</a>
+    </th>
   </tr>
 </table>
 
