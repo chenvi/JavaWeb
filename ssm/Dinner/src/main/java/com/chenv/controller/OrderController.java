@@ -56,25 +56,21 @@ public class OrderController {
 	
 	@RequestMapping("list")
 	public String list(HttpServletRequest request, Model model){
-		List<Orders> ordersList = this.ordersService.listAll();
-		Map<Orders, Double> map = new LinkedHashMap<Orders, Double>();
 		
+		//计算每个订单的总金额 将订单与总金额作为键值对放入map中
+		List<Orders> ordersList = this.ordersService.listAll();
+		Map<Orders, Double> map = new LinkedHashMap<Orders, Double>();		
 		Iterator<Orders> iterator = ordersList.iterator();
 		while (iterator.hasNext()) {
 			Orders orders = (Orders) iterator.next();
-			// TODO
-//			String[] strings = new String[2];
-//			strings[0] = this.dinnerTableService.findById(orders.getTableId()).getTableName();
-//			
-//			strings[1] = this.ordersService.total(orders);
-			
 			map.put(orders, this.ordersService.total(orders));
 		}
-		
-		List<DinnerTable> dinnerTables = this.dinnerTableService.listAll();
-		
-		model.addAttribute("table", dinnerTables);
 		model.addAttribute("map", map);
+		
+		//将餐桌信息放入model中，便jsp调用
+		List<DinnerTable> dinnerTables = this.dinnerTableService.listAll();
+		model.addAttribute("table", dinnerTables);
+				
 		return "orders";
 	}
 	

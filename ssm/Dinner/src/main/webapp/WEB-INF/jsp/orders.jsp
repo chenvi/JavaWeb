@@ -42,7 +42,9 @@ body,td,th {
 	  	<c:if test="${map.key.tableId == table.id}">${table.tableName }</c:if>
 	  </c:forEach>
 	  </td>
-	  <td width="215" align="center">${map.key.orderDate}</td>
+	  <td width="215" align="center">
+	  	<fmt:formatDate value="${map.key.orderDate}" type="both" dateStyle="full"/> 
+	  </td>	  
 	  <td width="215" align="center">${map.value}</td>
 	  
 	  <td width="215" height="20" align="center">

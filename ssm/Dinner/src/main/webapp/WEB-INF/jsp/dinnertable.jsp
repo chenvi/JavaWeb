@@ -50,7 +50,9 @@ body,td,th {
 		<c:if test="${dinnertable.tableStatus == '1' }" >预定</c:if>
 		<c:if test="${dinnertable.tableStatus == '0' }" >空闲</c:if>
 	</td>
-	<td width="500" align="center">${dinnertable.orderDate}</td>
+	<td width="500" align="center">
+		<fmt:formatDate value="${dinnertable.orderDate}" type="both" dateStyle="full"/> 
+	</td>
 	<td width="100" height="20" align="center">
 	<c:if test="${dinnertable.tableStatus == '0' }" >
 	  <form method="post" action="${pageContext.request.contextPath}/dinnertable/reserve">

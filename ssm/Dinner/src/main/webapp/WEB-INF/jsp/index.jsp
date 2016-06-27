@@ -1,4 +1,7 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,12 +16,18 @@ body,td,th {
 <body>
 
 <!-- 禁止页面返回 --> 
-<script language="JavaScript"> 
+<!-- <script language="JavaScript"> 
   javascript:window.history.forward(1);  
-</script> 
+</script>  -->
 
 <div align="right">  
-	欢迎用户<font color="red">${sessionScope.loginAccount.userName}  </font><a href="${pageContext.request.contextPath}">退出</a> 	
+	欢迎用户<font color="red">${sessionScope.loginAccount.userName}</font>	
+	<form name="form1" action="${pageContext.request.contextPath}/dinnertable/to">
+		<input type="hidden" name="page" value="success" >
+		<input type="hidden" name="msg"  value="1">
+		<a href="javascript:document.form1.submit();">退出</a>		
+	</form>
+
 </div>
 
 
