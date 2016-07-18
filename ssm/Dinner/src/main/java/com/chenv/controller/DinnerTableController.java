@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chenv.pojo.DinnerTable;
-import com.chenv.pojo.FoodType;
 import com.chenv.service.DinnerTableService;
 
 @Controller

@@ -3,7 +3,7 @@ package com.chenv.service;
 import java.util.List;
 
 import com.chenv.pojo.DinnerTable;
-import com.chenv.pojo.FoodType;
+
 
 public interface DinnerTableService {
 	
