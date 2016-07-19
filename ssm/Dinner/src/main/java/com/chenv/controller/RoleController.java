@@ -62,4 +62,24 @@ public class RoleController {
 				}
 
 	}
+	
+	@RequestMapping("/addRole")
+	public String addRole(HttpServletRequest request,Model model){
+		String name = request.getParameter("name");
+		  int newPwd1 = Integer.parseInt(request.getParameter("newPwd1"));
+		  int newPwd2 = Integer.parseInt(request.getParameter("newPwd2"));
+		  if (newPwd1==newPwd2) {
+			  if (this.roleService.addRole(name, newPwd1)) {
+				  model.addAttribute("msg", "添加用户成功");
+				  return "success";
+			} else {
+				model.addAttribute("msg", "添加用户失败");
+				return "error";
+			}
+		} else {
+			model.addAttribute("msg", "新密码输入不一致，请重新输入");
+			return "error";
+			}
+		
+	}
 }

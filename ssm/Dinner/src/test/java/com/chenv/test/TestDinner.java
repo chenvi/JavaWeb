@@ -17,6 +17,7 @@ import com.chenv.pojo.Food;
 import com.chenv.pojo.FoodType;
 import com.chenv.pojo.OrderDetail;
 import com.chenv.pojo.Orders;
+import com.chenv.pojo.Role;
 import com.chenv.service.DinnerTableService;
 import com.chenv.service.FoodService;
 import com.chenv.service.FoodTypeService;
@@ -174,5 +175,12 @@ public class TestDinner {
 		
 	}
 	
-	
+	@Test
+	public void testRole(){
+		Role role = new Role();
+		role.setUserName("chenv");
+		role.setPassword(123);
+		
+		
+	}
 }

@@ -59,4 +59,15 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	@Override
+	public boolean addRole(String name, int password) {
+		Role role = new Role();
+		role.setUserName(name);
+		role.setPassword(password);
+		if(this.roleMapper.insert(role)>0){
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -11,4 +11,6 @@ public interface RoleService {
 	boolean changePwd(int pwd, int newPwd);
 	
 	boolean checkPwd(int pwd);
+	
+	boolean addRole(String name, int password);
 }
