@@ -21,7 +21,7 @@
 	<bean id="myJob" class="com.hwx.quartz.MyJob" />
 
 	<!-- 定义调用对象和调用对象的方法 -->
-	<bean id="studyDetail"
+	<bean id="job2"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<!-- 调用的类 -->
 		<property name="targetObject" ref="myJob" />
@@ -40,12 +40,18 @@
 	<bean id="myJobTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail">
-			<ref bean="studyDetail" />
+			<ref bean="job2" />
 		</property>
 		<property name="cronExpression">
 			<value>0/5 * * * * ?</value>
 		</property>
 	</bean>
+
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="job2" />
+		<property name="startDelay" value="0" /><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+		<property name="repeatInterval" value="2000" /><!-- 每2秒调度一次 -->
+	</bean> 
 
 	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
 	<!-- 如果lazy-init='true',则需要实例化该bean才能执行调度程序 -->
@@ -53,7 +59,7 @@
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="myJobTrigger" />
+				<ref bean="simpleTrigger" />
 			</list>
 		</property>
 		<!-- <property name="autoStartup" value="true"/> -->

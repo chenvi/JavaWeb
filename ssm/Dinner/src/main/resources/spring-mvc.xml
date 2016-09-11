@@ -12,6 +12,14 @@
   <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
   <context:component-scan base-package="com.chenv.controller" />
   
+  <!-- 注册拦截器 -->
+  <mvc:interceptors>
+  		<mvc:interceptor>
+  			<mvc:mapping path="/order/**"/> <!-- **代表包括子路径 *代表当前路径 -->
+  			<bean class="com.chenv.interceptors.InterceptorDemo1"/>
+  		</mvc:interceptor>
+  </mvc:interceptors>
+  
   <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
   <bean id="mappingJacksonHttpMessageConverter"
     class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
