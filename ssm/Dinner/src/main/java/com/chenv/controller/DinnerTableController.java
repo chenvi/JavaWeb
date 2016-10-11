@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,9 @@ import com.chenv.service.DinnerTableService;
 @Controller
 @RequestMapping("/dinnertable")
 public class DinnerTableController {
+	
+	private static Logger logger = LoggerFactory.getLogger(DinnerTableController.class);
+	
 	@Resource
 	private DinnerTableService dinnerTableService;
 	
@@ -33,6 +38,7 @@ public class DinnerTableController {
 	@RequestMapping("list")
 	public String list(HttpServletRequest request, Model model){
 		List<DinnerTable> dinnerTableList = this.dinnerTableService.listAll();
+		logger.debug("list");
 		model.addAttribute("dinnertables", dinnerTableList);
 		return "dinnertable";
 	}
