@@ -10,6 +10,7 @@
 <br>
 <br>
 <h1 align="center">后台系统登录</h1>
+<h3 align="center"><font color="red">${msg }</font></h3>
  <form name="form1" onsubmit="return validate(this);" 
  action="${pageContext.request.contextPath}/role/login" method="post">
  <table align="center" border="0">

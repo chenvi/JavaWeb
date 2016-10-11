@@ -16,7 +16,16 @@
   <!-- 注册拦截器 -->
   <mvc:interceptors>
   		<mvc:interceptor>
-  			<mvc:mapping path="/order/**"/> <!-- **代表包括子路径 *代表当前路径 -->
+  		<!-- **代表包括子路径 *代表当前路径 -->
+  		    <!-- 拦截地址 -->
+  			<mvc:mapping path="/food/**"/> 
+  			<mvc:mapping path="/dinnertable/**"/>
+  			<mvc:mapping path="/foodtype/**"/>
+  			<mvc:mapping path="/order/**"/>
+  			<mvc:mapping path="/role/**"/>
+  			<!-- 不需要拦截的地址 -->
+  			<mvc:exclude-mapping path="/role/login"/>
+  			<mvc:exclude-mapping path="/dinnertable/to*"/>
   			<bean class="com.chenv.interceptors.InterceptorDemo1"/>
   		</mvc:interceptor>
   </mvc:interceptors>
