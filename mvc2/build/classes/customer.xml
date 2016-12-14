@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<customers>
-	<customer id="1001">
-		<name>Chenv</name>
-		<address>wuhan</address>
-		<phone>123445676788</phone>
-	</customer>
-</customers>

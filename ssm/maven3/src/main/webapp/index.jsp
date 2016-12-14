@@ -5,8 +5,7 @@
     <title>主页</title>
 </head>
 <body>
-heelo
-  <form action="./user/showUser" method="post">
+ <form action="./user/showUser" method="post">
 	姓名：<input name="name" type="text" /><br/>
 	密码：<input name="password" type="password" /><br/> 
 	<input type="submit" value="提交"><br/>
