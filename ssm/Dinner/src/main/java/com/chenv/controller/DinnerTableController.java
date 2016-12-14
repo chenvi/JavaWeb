@@ -25,13 +25,14 @@ public class DinnerTableController {
 	
 	@RequestMapping("to")
 	public String to(HttpServletRequest request){
-		//获取页面跳转
+		//获取页面跳转		
 		String page = request.getParameter("page");
 		if("foodtypeUpdate".equals(page)){
 			int id = Integer.parseInt(request.getParameter("id"));
 			request.setAttribute("foodtype", this.dinnerTableService.findById(id));
 			return page;
 		} 
+		request.getSession().removeAttribute("userName");
 		return page;
 	}
 	

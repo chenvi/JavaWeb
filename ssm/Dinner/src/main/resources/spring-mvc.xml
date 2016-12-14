@@ -16,8 +16,8 @@
   <!-- 注册拦截器 -->
   <mvc:interceptors>
   		<mvc:interceptor>
-  		<!-- **代表包括子路径 *代表当前路径 -->
-  		    <!-- 拦截地址 -->
+  		<!-- **代表包括子路径 *代表当前路径
+  		    拦截地址 -->
   			<mvc:mapping path="/food/**"/> 
   			<mvc:mapping path="/dinnertable/**"/>
   			<mvc:mapping path="/foodtype/**"/>

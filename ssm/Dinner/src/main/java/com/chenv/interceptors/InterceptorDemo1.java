@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.cglib.transform.impl.AddDelegateTransformer;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,4 +55,8 @@ public class InterceptorDemo1 implements HandlerInterceptor {
 
 	}
 
+}
+interface IDictionary{
+	public void add(String word);
+	public List<String> findSimilary(String word);
 }
