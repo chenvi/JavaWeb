@@ -21,7 +21,8 @@ class HtmlParser(object):
         summary = soup.find('div',class_ ="lemma-summary")
         data['summary'] = summary.get_text()
 
-        data['url'] = url
+        # 将url转中文
+        data['url'] = urllib.parse.unquote(url,encoding='utf-8')
 
         return data
 
@@ -29,7 +30,7 @@ class HtmlParser(object):
         if url is None or html_cont is None:
             return
 
-        soup = BeautifulSoup(html_cont,'html.parser',from_encoding='utf-8')
+        soup = BeautifulSoup(html_cont,'html.parser')
         new_urls = self._get_new_urls(url,soup)
         new_data = self._get_new_data(url,soup)
         return new_urls,new_data

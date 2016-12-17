@@ -1,4 +1,6 @@
 # 主程序
+import urllib.parse
+
 from spider import html_downloader
 from spider import html_outputer
 from spider import html_parser
@@ -14,7 +16,7 @@ class SpiderMain(object):
         self.outputer = html_outputer.HtmlOutputer()
 
     # 爬虫函数
-    def craw(self, root_url):
+    def craw(self, root_url, deep):
         count = 1
         self.urls.add_new_url(root_url)
         while self.urls.has_new_url():
@@ -25,7 +27,7 @@ class SpiderMain(object):
                 new_urls, new_data = self.parser.parse(new_url,html_cont)
                 self.urls.add_new_urls(new_urls)
                 self.outputer.collect(new_data)
-                if count == 1000:
+                if count == deep:
                     break
                 count = count + 1
 
@@ -38,6 +40,9 @@ class SpiderMain(object):
 
 
 if __name__ == "__main__":
-    root_url = ''
+    key = input("请输入词条：")
+    deep = int(input("请输入爬虫深度："))
+    # quote将中文转url
+    root_url = 'http://baike.baidu.com/item/'+urllib.parse.quote(key)
     obj_spider = SpiderMain()
-    obj_spider.craw(root_url)
+    obj_spider.craw(root_url,deep)
